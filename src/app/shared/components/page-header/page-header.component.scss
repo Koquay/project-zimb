@@ -1,0 +1,18 @@
+$primary: #cbba83;
+$secondary: #ffecb3;
+$tertiary: #ffffe5;
+$deep-brown: #6a5636;
+
+.page-header-btn {
+    background: $primary;
+    color: $tertiary;
+    font-weight: bold;
+    letter-spacing: .5rem;
+    min-width: 212px;
+    border-color: $primary !important; 
+
+    &:hover {
+        background: $deep-brown;
+        color: black;
+    }
+}

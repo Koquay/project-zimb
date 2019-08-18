@@ -1,0 +1,55 @@
+$primary: #cbba83;
+$secondary: #ffecb3;
+$tertiary: #ffffe5;
+$deep-brown: #6a5636;
+
+#header {
+    .jumbotron {
+        padding: 2rem !important;
+        font-style: italic;        
+        letter-spacing: 1rem;
+        background: $primary;
+        color: $tertiary;
+        border-radius: 0; 
+
+        a {
+            text-decoration: none;
+            color: $tertiary;
+            h1 {
+                font-weight: 700;
+            }
+
+        }
+        
+    }
+    
+    .navbar {
+        background: $tertiary;
+        .fa-mobile {
+            font-size: 1.5rem; 
+            font-weight: bold !important;
+        }
+        
+        a,
+        span {
+           font-size: 1.2rem;  
+           font-weight: bold !important;
+        }
+    }
+}
+
+#myAccountModal {
+    h2 {
+        color: $deep-brown !important;
+    }
+
+    .btn {
+        background: $deep-brown !important;
+        font-size: 1.2rem;
+    }
+
+    .close {
+        color: $deep-brown !important;
+        font-size: 1.2rem !important;
+    }
+}   

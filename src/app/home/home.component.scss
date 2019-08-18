@@ -1,0 +1,61 @@
+$primary: #cbba83;
+$secondary: #ffecb3;
+$tertiary: #ffffe5;
+
+// $primary: #97b498;
+// $secondary: #c8e6c9;
+// $tertiary: #fbfffc;
+$deep-brown: #6a5636;
+
+#main {
+    font-size: 1rem;
+    
+    #view-order {
+        background: $primary;
+        color: $tertiary;
+        font-weight: bold;
+        letter-spacing: .5rem;
+
+        &:hover {
+            background: $deep-brown;
+        }
+    }
+    
+    .nav-item {
+        margin: 2px;
+        
+        a {
+            background: $primary;
+            color: black;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }               
+        
+        a.active {
+            background: $tertiary !important;
+            color: $deep-brown !important;
+        }
+    }
+    
+    .tab-content {
+        background: $tertiary;  
+        .tab-pane {
+           background: $tertiary;   
+            
+            button {
+                background: $primary;
+                font-weight: bold;
+            }
+        }
+
+        .active {
+            background: $tertiary;
+        }
+    }    
+
+    
+    
+    @media(min-width: 768px) {
+        font-size: 1.2rem;
+    }
+}

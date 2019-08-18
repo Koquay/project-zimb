@@ -1,0 +1,47 @@
+$primary: #97b498;
+$secondary: #c8e6c9;
+$tertiary: #fbfffc;
+$deep-brown: #6a5636;
+
+
+.row {
+    // background-color: #f2b8b8;
+    // color: red;
+}
+
+i {
+    font-size: 1.5rem;
+    color: black;
+    font-weight: bold;
+}
+
+// .alertDangerClass {
+//     background-color: #f2b8b8;
+//     color: red;
+// }
+
+.alertSuccessClass {
+    background-color: $tertiary;
+    color: $deep-brown;
+}
+
+.alertDangerClass,
+.alertInfoClass {
+    background-color: #f3d4d4;
+    // background-color: $tertiary;
+    color: $deep-brown;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.f-2 {
+    font-size: 2rem;
+}
+
+.modal {
+    button {
+        background: $deep-brown;
+    }
+}

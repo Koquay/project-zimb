@@ -1,0 +1,35 @@
+<div class="container-fluid px-0" id="header">
+    <div class="jumbotron text-center px-0 mb-0">
+        <a [routerLink]="['/home']">
+            <h1>NANDOS</h1>
+        </a>
+    </div>
+    <nav class="navbar navbar-light navbar-expand-md">
+        <div class="container-fluid">
+            <span class="d-lg-flex align-items-lg-center font-weight-bold">
+                <i class="fa fa-mobile mr-1"></i>
+                <span>1800-999-9999</span>
+            </span>
+            <button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse d-lg-flex justify-content-md-end" id="navcol-1">
+                <ul class="nav navbar-nav">
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" [routerLink]="['/order-list']" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{exact: true}">
+                            PENDING ORDERS
+                        </a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" data-toggle="modal" data-target="#myAccountModal">
+                            <i class="fa fa-user"></i>
+                            LOG IN
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>

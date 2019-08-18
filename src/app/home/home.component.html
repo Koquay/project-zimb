@@ -1,0 +1,23 @@
+<app-header></app-header>
+<app-message></app-message>
+<div class="container mt-4 view-height" id="main">
+    <app-page-header></app-page-header>
+    <div class="mt-4">
+        <ul class="nav nav-pills">
+            <li class="nav-item" *ngFor="let item of menuData">
+                <a class="nav-link active" role="tab" data-toggle="pill" href={{item.type}} 
+                    (click)="loadMenu(item.type)" [ngClass]="{ 'active':activeTab===item.type}">
+                    <em>{{item.label}}</em><br>
+                </a>
+            </li>            
+        </ul>
+        <div class="tab-content mt-2">
+            <ng-container *ngFor="let item of menuData">
+                <div class="tab-pane" role="tabpanel" id={{item.type}} [ngClass]="{ 'active':activeTab===item.type}">
+                    <app-tab-pane [currentMenu]="currentMenu" [activeTab]="activeTab" *ngIf="!isLoading"></app-tab-pane>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

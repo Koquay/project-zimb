@@ -1,1 +1,38 @@
-/* You can add global styles to this file, and also import other style files */
+
+$primary: #cbba83;
+$secondary: #ffecb3;
+$tertiary: #ffffe5;
+
+// $primary: #97b498;
+// $secondary: #c8e6c9;
+// $tertiary: #fbfffc;
+
+body {
+    font-family: "Roboto" !important;
+    background: $secondary !important;
+    
+    a {
+        text-decoration: none;
+        cursor:pointer;
+    }    
+
+    .view-height {
+        min-height: 61vh !important;
+      }
+
+      input[type="radio"],
+      input[type="checkbox"] {
+          width: 1.4rem;
+          height: 1.2rem;
+      }
+}
+
+.site {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;    
+}
+
+.site-content {
+    flex: 1;
+}

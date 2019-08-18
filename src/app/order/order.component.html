@@ -1,0 +1,127 @@
+<app-header></app-header>
+<app-message></app-message>
+
+<div class="container-fluid view-height" id="order">
+    <app-banner></app-banner>
+    <!-- <app-breadcrumb></app-breadcrumb> -->
+
+    <div class="container mt-4">
+        <app-page-header></app-page-header>
+        <section id="items" class="py-4 px-2 mt-2">
+            <div class="row d-none d-lg-flex pt-3 justify-content-center font-weight-bold">
+                <div class="col col-lg-4">
+                    <h5>Item</h5>
+                </div>
+                <div class="col-2 text-right">
+                    <h5>Price</h5>
+                </div>
+                <div class="col-3 text-center">
+                    <h5>Quantity</h5>
+                </div>
+                <div class="col-2 text-right">
+                    <h5>Total</h5>
+                </div>
+            </div>
+            <div class="row d-none d-lg-flex">
+                <div class="col-12 text-center">
+                    <hr class="mt-0">
+                </div>
+            </div>
+            <div class="row justify-content-center" *ngFor="let item of order.menuItems">
+                <div class="col col-md-4  text-left">
+                    <span class="text-center">{{item.name}}
+                    </span>
+                </div>
+                <div class="col-6 text-right col-md-2">
+                    <span>{{item.price | currency:'USD':'symbol-narrow'}}</span>
+                </div>
+                <div class="col-6 text-md-center col-md-3">
+                    <a (click)="decreaseQuantity(item)">
+                        <i class="fa fa-minus-square quantity-change"></i>
+                    </a>
+                    <span class="mx-2">{{item.quantity}}</span>
+                    <a (click)="increaseQuantity(item)">
+                        <i class="fa fa-plus-square mr-2 quantity-change"></i>
+                    </a>
+                    <a (click)="setDeleteItem(item)" data-toggle="modal" data-target="#deleteItemModal">
+                        <i class="fa fa-trash-o trash"></i>
+                    </a>
+                </div>
+
+                <div class="col-6 text-right col-md-2">
+                    <span>{{item.price * item.quantity | currency:'USD':'symbol-narrow'}}</span>
+                </div>
+                <div class="col-12 text-center">
+                    <hr class="">
+                </div>
+            </div>
+        </section>
+        <section id="totals" class="justify-content-center px-2">
+            <div class="row">
+                <div class="col col-md-2 text-right offset-md-63">
+                    <span>Subtotal:</span>
+                </div>
+                <div class="col col-md-2 text-right">
+                    <span class="font-weight-bold">{{order.subtotal | currency:'USD':'symbol-narrow'}}</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-md-2 text-right offset-md-63"><span>Tax:</span></div>
+                <div class="col col-md-2 text-right"><span class="font-weight-bold">{{order.tax | currency:'USD':'symbol-narrow'}}</span></div>
+            </div>
+            <div class="row">
+                <div class="col col-md-2 text-right offset-md-63"><span>Discount:</span></div>
+                <div class="col col-md-2 text-right"><span id="discount" class="font-weight-bold">
+                        {{order.discount | currency:'USD':'symbol-narrow'}}
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-md-3 text-right offset-lg-9">
+                    <hr>
+                </div>
+            </div>
+            <div class="row pb-2" id="total-row">
+                <div class="col col-md-2 text-right offset-md-63"><span>Total:</span></div>
+                <div class="col col-md-2 text-right"><span class="font-weight-bold">
+                        {{order.total | currency:'USD':'symbol-narrow'}}
+                    </span>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+<app-footer></app-footer>
+
+
+<!-- Delete Item Modal -->
+
+<section id="confirmModal" *ngIf="deleteItem">
+    <div class="modal fade" id="deleteItemModal" tabindex="-1" role="dialog" aria-labelledby="deleteItemModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title primary-color" id="deleteItemModalLabel">
+                        Delete this item from your order?
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col d-flex justify-content-start align-items-center">
+                            <span class="d-flex">{{deleteItem.name}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary btn-delete secondary-background" data-dismiss="modal" (click)="removeItem(deleteItem)">
+                        Delete
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

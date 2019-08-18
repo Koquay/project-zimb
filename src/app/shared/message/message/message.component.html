@@ -1,0 +1,25 @@
+<ng-container class="hidden">
+  <a #openMessage id="open-message" data-toggle="modal" data-target="#messageModal">
+  </a>
+</ng-container>
+
+<div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="messageModalTitle" aria-hidden="true"
+  >
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content" [ngClass]="{'alertDangerClass' : alert.type=='danger', 
+      'alertInfoClass' : alert.type=='info', 'alertSuccessClass' : alert.type=='success'}"
+      *ngIf="alert">
+
+      <div class="modal-body">
+        <h4 class="text-center font-weight-bold m-0 d-inline-block">
+          {{alert.text}}
+        </h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary btn-block font-weight-bold" data-dismiss="modal">
+          OK
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

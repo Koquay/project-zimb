@@ -1,0 +1,21 @@
+$primary: #cbba83;
+$secondary: #ffecb3;
+$tertiary: #ffffe5;
+$deep-brown: #6a5636;
+
+button {
+    background: $primary;
+    color: $tertiary;
+    font-weight: bold;
+    border-color: $primary !important;   
+
+    &:hover {
+        background: $deep-brown;
+    }
+}
+
+.scroll-style
+{
+    max-height: 150px;
+    overflow-y: scroll;
+}
