@@ -2,22 +2,19 @@
 <app-message></app-message>
 <div class="container mt-4 view-height" id="main">
     <app-page-header></app-page-header>
-    <div class="mt-4">
-        <ul class="nav nav-pills">
-            <li class="nav-item" *ngFor="let item of menuData">
-                <a class="nav-link active" role="tab" data-toggle="pill" href={{item.type}} 
-                    (click)="loadMenu(item.type)" [ngClass]="{ 'active':activeTab===item.type}">
-                    <em>{{item.label}}</em><br>
+    <section id="categories" class="mt-4 p-4">
+        <div class="row">
+            <div class="col-12 col-lg-4 col-md-6 mb-4" *ngFor="let card of categories.cards">
+                <a [routerLink]="['/food-product', card.business]" (click)="setBusinessTitle(card.title)">
+                    <div class="card business-card d-lg-flex">
+                        <img class="card-img-top w-100 d-block" src="assets/img/{{card.img}}">
+                        <div class="d-flex d-lg-flex align-self-center">
+                            <h2>{{card.title}}</h2>
+                        </div>
+                    </div>
                 </a>
-            </li>            
-        </ul>
-        <div class="tab-content mt-2">
-            <ng-container *ngFor="let item of menuData">
-                <div class="tab-pane" role="tabpanel" id={{item.type}} [ngClass]="{ 'active':activeTab===item.type}">
-                    <app-tab-pane [currentMenu]="currentMenu" [activeTab]="activeTab" *ngIf="!isLoading"></app-tab-pane>
-                </div>
-            </ng-container>
+            </div>
         </div>
-    </div>
+    </section>
 </div>
 <app-footer></app-footer>

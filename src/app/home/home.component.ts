@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
   private currentMenu:Menu[];
   private isLoading = false;
   private menuData;
-  private activeTab = 'burgers-pitas-wraps';
+  private categories;
   
   constructor(
     private homeService:HomeService,
@@ -21,29 +21,17 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getMenu();
-    this.getMenuStaticData();
+    this.getHomeStaticData();
   }
 
-  private getMenu() {    
-    this.homeService.getMenu().subscribe(menu => {
-      this.menu = menu;
-      this.loadMenu('burgers-pitas-wraps');
+  private getHomeStaticData() {
+    this.homeService.getHomeStaticData().subscribe(data => {
+      console.log('data', data)
+      this.categories = data[0];
     })
   }
 
-  private loadMenu(type) {
-    this.isLoading = true;
-    this.currentMenu = this.menu.filter(menu => menu.type == type);
-    this.activeTab = type;
-    this.isLoading = false;
-    console.log('currentMenu', this.currentMenu)
-  }
-
-  private getMenuStaticData() {
-    this.tabPaneService.getMenuStaticData().subscribe(data => {
-      this.menuData = data[1];
-      console.log('static data', data)
-    })
+  private setBusinessTitle(businessTitle) {
+    this.homeService.setBusinessTitle(businessTitle).subscribe();
   }
 }
