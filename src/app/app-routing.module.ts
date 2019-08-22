@@ -26,6 +26,16 @@ const routes: Routes = [
     data: {breadcrumb: 'Checkout'}
   },
   {
+    path: 'order-list',
+    loadChildren: './order-list/order-list.module#OrderListModule',
+    data: {breadcrumb: 'Pending Order'}
+  },
+  {
+    path: 'order-picker',
+    loadChildren: './order-picker/order-picker.module#OrderPickerModule',
+    data: {breadcrumb: 'Order Picker'}
+  },
+  {
     path: '', pathMatch: 'prefix', redirectTo: 'home'
   }
 ];

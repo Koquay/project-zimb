@@ -33,3 +33,37 @@
         </div>
     </nav>
 </div>
+
+<div class="modal fade" id="myAccountModal" tabindex="-1" role="dialog" aria-labelledby="myAccountModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="myAccountModalTitle">LOG IN</h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" class="c-orange f-2 font-weight-bold">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form #loginForm>
+                        <div class="form-row">
+                            <div class="col-md-12" id="message">
+                                <div class="form-group">
+                                    <label for="email" class="font-weight-bold">Email</label>
+                                    <input type="email" name="email" required class="form-control" id="email" [(ngModel)]="user.email" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="password" class="font-weight-bold">Password</label>
+                                    <input type="password" name="password" required class="form-control" id="password" [(ngModel)]="user.password" />
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary btn-block font-weight-bold border-inset button" (click)="logIn()" data-dismiss="modal">
+                        Sign In
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -16,6 +16,7 @@ exports.register = async (user) => {
         return user;
 
     } catch (errorX) {
+        console.log('errorX', errorX)
         let error = new Error()
         error.message = 'Registration failure! Please try again with correct credentials.'
         error.status = 401;
@@ -62,6 +63,7 @@ exports.authenticate = async (req, res, next) => {
         bearer = JSON.parse(req.headers.authorization.substr(7));
         token = bearer.user.token;
     } catch (errorx) {
+        console.log('errorx', errorx)
         let error = new Error();
         error.message = 'There is a problem. Please log in to proceed.';
         error.status = '500';

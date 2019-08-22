@@ -1,0 +1,168 @@
+<app-header></app-header>
+<app-message></app-message>
+<app-banner></app-banner>
+<!-- <app-breadcrumb></app-breadcrumb> -->
+
+<div class="container  view-height mt-4" id="order-picker">
+    <div class="row text-center mb-4">
+        <div class="col"><span class="heading">Order<br></span></div>
+    </div>
+    <section id="address">
+        <div class="row mb-4 text-center">
+            <div class="col offset-lg-5 text-left">
+                <div class="row">
+                    <div class="col">
+                        <span class="mr-3 font-weight-bold">Name:</span>
+                        <span>{{order.delivery.name}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <span class="mr-3 font-weight-bold">Phone:</span>
+                        <span>{{order.delivery.phone | mask: '(000) 000-0000'}}</span>
+                    </div>
+                </div>
+                <div class="row" *ngIf="order.delivery.method=='Delivery'">
+                    <div class="col">
+                        <span class="mr-3 font-weight-bold">Address:</span>
+                        <span>{{order.delivery.address}}</span>
+                    </div>
+                </div>
+                <div class="row" *ngIf="order.delivery.method=='Delivery'">
+                    <div class="col">
+                        <span class="mr-3 font-weight-bold">
+                            City:
+                        </span>
+                        <span>{{order.delivery.city}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <span class="mr-3 font-weight-bold">Delivery Method:</span>
+                        <span>{{order.delivery.method}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <span class="mr-3 font-weight-bold"><strong>Order Time</strong>:</span>
+                        <span>{{order.created_time | date:'shortTime' }}<br></span>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col">
+                        <span class="mr-3 font-weight-bold">Pending:</span>
+                        <input type="radio" class="mr-1" name="status" [(ngModel)]="order.status" value="Pending" (change)="setOrderStatus()">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <span class="mr-3 font-weight-bold">Prepared:</span>
+                        <input type="radio" class="mr-1" name="status" [(ngModel)]="order.status" value="Prepared" (change)="setOrderStatus()">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <span class="mr-3 font-weight-bold">Completed:</span>
+                        <input type="radio" class="mr-1" name="status" [(ngModel)]="order.status" value="Completed" (change)="setOrderStatus()">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <span class="mr-3 font-weight-bold">Cancelled:</span>
+                        <input type="radio" class="mr-1" name="status" [(ngModel)]="order.status" value="Cancelled" (change)="setOrderStatus()">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="row">
+        <div class="col">
+            <hr>
+        </div>
+    </div>
+    <section id="items" class="">
+        <div class="row d-none d-md-flex mb-2">
+            <div class="col-md-4 col-lg-3 offset-lg-2">
+                <span class="font-weight-bold col-title">Item</span>
+            </div>
+            <div class="col-3 col-lg-2 text-center">
+                <span class="font-weight-bold col-title">Quantity</span>
+            </div>
+            <div class="col-3 col-lg-2 text-right">
+                <span class="font-weight-bold col-title">Price</span>
+            </div>
+        </div>
+        <div class="row mb-lg-0 mb-4" *ngFor="let item of order.menuItems">
+            <div class="col-12 col-md-4 col-lg-3 offset-lg-2">
+                <span>{{item.name}}<br></span>
+            </div>
+            <div class="col-3 col-lg-2 text-center">
+                <span>{{item.quantity}}<br></span>
+            </div>
+            <div class="col-3 text-right col-lg-2"><span>{{item.price * item.quantity | currency:'USD':'symbol-narrow'}}<br></span></div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <hr>
+            </div>
+        </div>
+    </section>
+    <section id="address">
+        <div class="row mb-4">
+            <div class="col">
+                <div class="row">
+                    <div class="col-4 col-md-2 col-lg-1 offset-md-6">
+                        <span>Subtotal:</span>
+                    </div>
+                    <div class="col-4 col-md-2 text-right">
+                        <span class="font-weight-bold">{{getSubtotal() | currency:'USD':'symbol-narrow'}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4 col-md-2 col-lg-1 offset-md-6">
+                        <span>GST:</span>
+                    </div>
+                    <div class="col-4 col-md-2 text-right">
+                        <span class="font-weight-bold">{{getGST() | currency:'USD':'symbol-narrow'}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4 col-md-2 col-lg-1 offset-md-6">
+                        <span>PST:</span>
+                    </div>
+                    <div class="col-4 col-md-2 text-right">
+                        <span class="font-weight-bold">{{getPST() | currency:'USD':'symbol-narrow'}}</span>
+                    </div>
+                </div>
+                <div class="row" *ngIf="order.delivery.method == 'Delivery'">
+                    <div class="col-4 col-md-2 col-lg-1 offset-md-6">
+                        <span>Delivery:</span>
+                    </div>
+                    <div class="col-4 col-md-2 text-right">
+                        <span class="font-weight-bold">{{getDeliveryCharge() | currency:'USD':'symbol-narrow'}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4 col-md-2 col-lg-1 offset-md-6">
+                        <span>Discount:</span>
+                    </div>
+                    <div class="col-4 col-md-2 text-right">
+                        <span class="font-weight-bold">{{getDiscount() | currency:'USD':'symbol-narrow'}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <hr />
+                    </div>
+                    <div class="col-4 col-md-2 col-lg-1 offset-md-6">
+                        <span>Total:</span>
+                    </div>
+                    <div class="col-4 col-md-2 text-right">
+                        <span class="font-weight-bold">{{getTotal() | currency:'USD':'symbol-narrow'}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<app-footer></app-footer>

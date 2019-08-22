@@ -40,8 +40,8 @@ export class Delivery {
 
 export class User {
     constructor(
-        private email = 'chinese@yahoo.com',
-        private password = 'chinese',
+        private email = 'wannet@yahoo.com',
+        private password = 'wannet',
         private token = '',
     ) {}
 
