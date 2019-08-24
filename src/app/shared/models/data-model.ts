@@ -16,12 +16,12 @@ export class MenuItem {
 
 export class Order {    
     _id: string;
-    discount: number;
-    tax: number;
     subtotal: number;
     total: number;
     special_instructions: string;
     status: string;
+    card_token: string;
+    card_id: string;
     created_on: Date;
     created_time: Date;
     public delivery:Delivery = new Delivery();
@@ -35,6 +35,7 @@ export class Delivery {
     public phone:String;
     public address:String;
     public city:String;
+    public country:String;
     public instruction:String;    
 }
 

@@ -66,20 +66,7 @@
                                         <span class="font-weight-bold">{{order.subtotal | currency:'USD':'symbol-narrow'}}</span>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col col-md-2 text-right offset-md-60"><span>Tax:</span></div>
-                                    <div class="col col-md-2 text-right"><span class="font-weight-bold">{{order.tax | currency:'USD':'symbol-narrow'}}</span></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col col-md-2 text-right offset-md-60">
-                                        <span>Discount:</span>
-                                    </div>
-                                    <div class="col col-md-2 text-right">
-                                        <span id="discount" class="font-weight-bold">
-                                            {{order.discount | currency:'USD':'symbol-narrow'}}
-                                        </span>
-                                    </div>
-                                </div>
+
                                 <div class="row">
                                     <div class="col text-right offset-md-7">
                                         <hr>
@@ -93,35 +80,34 @@
                                     </div>
                                 </div>
                             </section>
+                            <section class="mt-4 mt-md-5">
+                                <div class="form-row mb-2">
+                                    <div class="col-12 text-center">
+                                        <span id="heading">Payment Information<br></span>
+                                    </div>
+                                </div>
+                                <div class="form-row mb-4">
+                                    <div class="col-12 text-center">
+                                        <img class="img-fluid" src="assets/img/payment-2.png">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <label for="card-element">Enter Credit Card Information Below:</label>
+                                    <div id="card-element" class="col-12 mb-4">
+                                    </div>
+                                </div>
+                            </section>
                         </div>
                         <div class="col-12 col-lg-4 ml-lg-5">
                             <div class="form-row">
                                 <div class="col delivery p-4">
-                                    <!-- <div class="form-row">
-                                        <div class="col-12">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" id="formCheck-1" name="deliveryMethod" [(ngModel)]="order.delivery.method" value="PickUp"
-                                                    (change)="showDelivery()">
-                                                <label class="form-check-label ml-1" for="formCheck-1">
-                                                    Pick Up
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 mt-2">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" id="formCheck-2" name="delivery-method" name="deliveryMethod" [(ngModel)]="order.delivery.method"
-                                                    value="Delivery" (change)="showDelivery()">
-                                                <label class="form-check-label ml-1" for="formCheck-2">Delivery</label>
-                                            </div>
-                                        </div>
-                                    </div> -->
                                     <div class="form-row">
                                         <div class="col">
                                             <div class="form-row mt-2">
                                                 <div class="col-12"><span>Name:</span></div>
                                                 <div class="col col-md-6 col-lg-12">
                                                     <input class="form-control" type="text" required name="name" id="name" [(ngModel)]="order.delivery.name" #name="ngModel">
-                                                    <div *ngIf="name.invalid && (name.dirty || name.touched)" class="primary-color">
+                                                    <div *ngIf="name.invalid && (name.dirty || name.touched)" class="error-color">
                                                         <div *ngIf="name.errors.required">
                                                             Name is required
                                                         </div>
@@ -148,7 +134,7 @@
                                                     <div class="col col-md-6 col-lg-12">
                                                         <ng-container>
                                                             <input class="form-control" type="text" required name="address" id="address" [(ngModel)]="order.delivery.address" #address="ngModel">
-                                                            <div *ngIf="address.invalid && (address.dirty || address.touched)" class="primary-color">
+                                                            <div *ngIf="address.invalid && (address.dirty || address.touched)" class="error-color">
                                                                 Address is required
                                                             </div>
                                                         </ng-container>
@@ -160,30 +146,28 @@
                                                     </div>
                                                     <div class="col col-md-6 col-lg-12">
                                                         <ng-container>
-                                                            <input class="form-control" type="text" required name="city" id="city" 
-                                                                readonly [(ngModel)]="countryCitySelectorService.selectedCity" #city="ngModel"
+                                                            <input class="form-control" type="text" required name="city" id="city" readonly [(ngModel)]="order.delivery.city" #city="ngModel"
                                                                 class="cityCountry">
-                                                            <div *ngIf="city.invalid && (city.dirty || city.touched)" class="primary-color">
+                                                            <div *ngIf="city.invalid && (city.dirty || city.touched)" class="error-color">
                                                                 City is required
                                                             </div>
                                                         </ng-container>
                                                     </div>
                                                 </div>
                                                 <div class="form-row mt-2">
-                                                        <div class="col-12">
-                                                            <span>Country:</span>
-                                                        </div>
-                                                        <div class="col col-md-6 col-lg-12">
-                                                            <ng-container>
-                                                                <input class="form-control" type="text" required name="country" id="country" 
-                                                                    readonly [(ngModel)]="countryCitySelectorService.selectedCountry" #country="ngModel"
-                                                                        class="cityCountry">
-                                                                <div *ngIf="country.invalid && (country.dirty || country.touched)" class="primary-color">
-                                                                    Country is required
-                                                                </div>
-                                                            </ng-container>
-                                                        </div>
+                                                    <div class="col-12">
+                                                        <span>Country:</span>
                                                     </div>
+                                                    <div class="col col-md-6 col-lg-12">
+                                                        <ng-container>
+                                                            <input class="form-control" type="text" required name="country" id="country" readonly [(ngModel)]="order.delivery.country"
+                                                                #country="ngModel" class="cityCountry">
+                                                            <div *ngIf="country.invalid && (country.dirty || country.touched)" class="error-color">
+                                                                Country is required
+                                                            </div>
+                                                        </ng-container>
+                                                    </div>
+                                                </div>
                                                 <div class="form-row mt-2">
                                                     <div class="col-12">
                                                         <span>Delivery Instructions; (If any):</span>
@@ -222,7 +206,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title primary-color" id="deleteItemModalLabel">
+                    <h5 class="modal-title error-color" id="deleteItemModalLabel">
                         Delete this item from your order?
                     </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">

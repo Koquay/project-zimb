@@ -8,6 +8,11 @@ $red: #a30000;
     background: $tertiary;
     font-size: 1.2rem;
 
+    #heading {
+        font-size: 1.5rem;
+        border-bottom: 4px solid $secondary;
+    }
+
     .quantity {        
         .add {
             color: $primary;
@@ -33,11 +38,6 @@ $red: #a30000;
         border-bottom: 4px solid $tertiary;
     }
 
-    
-    
-    #discount {
-        color: $red;
-    }
 
     i {
         color: $deep-brown !important;
@@ -81,6 +81,10 @@ $red: #a30000;
 
     .cityCountry {
         background: $tertiary;
+    }
+
+    .error-color {
+        color: $red;
     }
 
       

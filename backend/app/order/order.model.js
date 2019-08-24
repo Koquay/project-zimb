@@ -10,6 +10,7 @@ const DeliverySchema = new Schema({
     phone: String,
     address: String,
     city: String,
+    country: String,
     instruction: String,
 }, {_id: false});
 
@@ -22,9 +23,6 @@ const MenuItemSchema = new Schema({
 
 const OrderSchema = new Schema({    
     discount: {
-        type: Number,
-    },
-    tax: {
         type: Number,
     },
     subtotal: {
@@ -41,6 +39,9 @@ const OrderSchema = new Schema({
     status: {
         type:String,
         default: "Pending"
+    },
+    card_id: {
+        type: String,
     },
     delivery: DeliverySchema,
     menuItems: [MenuItemSchema],

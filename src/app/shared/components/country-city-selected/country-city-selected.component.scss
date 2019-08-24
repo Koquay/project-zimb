@@ -2,6 +2,7 @@ $primary: #cbba83;
 $secondary: #ffecb3;
 $tertiary: #ffffe5;
 $deep-brown: #6a5636;
+$red: #a30000; 
 
 .location {
     color: $deep-brown;
@@ -10,6 +11,6 @@ $deep-brown: #6a5636;
 }
 
 .changeLocation {
-    font-size: .8rem;
-    color: $deep-brown;
+    font-size: .9rem;
+    color: $red;
 }

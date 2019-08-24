@@ -22,7 +22,7 @@ exports.placeOrder = async(req, res) => {
         res.status(200).json(order);
         return;
     } catch(error) {
-        return ErrorHandler.handleError('setOrderStatus ERROR', res, error);
+        return ErrorHandler.handleError('placeOrder ERROR', res, error);
     }    
 }
 
