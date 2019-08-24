@@ -1,0 +1,14 @@
+<div class="row mt-4">
+    <div class="col-12">
+        <span>Your current delivery location:</span>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <span class="location">{{countryCitySelectorService.selectedCity}}, </span>
+        <span class="location">{{countryCitySelectorService.selectedCountry}}</span>
+        <a [routerLink]="['/home']" class="changeLocation ml-md-2 d-block d-md-inline-flex">
+            (Change location)
+        </a>
+    </div>    
+</div>

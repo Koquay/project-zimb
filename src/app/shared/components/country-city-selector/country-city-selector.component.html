@@ -1,0 +1,34 @@
+<ng-container class="mt-2 justify-content-center ">
+    <div class="row mt-4">
+        <div class="col-12">
+            <span>Please choose country and city:</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <select class="mr-2 country-city-select" [(ngModel)]="selectedCountry" (change)="getCities()">
+                <option *ngFor="let country of countries" [value]="country.country">
+                    {{country.country}}
+                </option>
+            </select>
+
+            <select class="mr-2 country-city-select mt-1 mt-sm-0" [(ngModel)]="selectedCity" (change)="setCity()">
+                <option *ngFor="let city of cities" [value]="city.city">
+                    {{city.city}}
+                </option>
+            </select>
+        </div>
+    </div>
+
+    <!-- <div class="row mt-4">
+        <div class="col-12">
+            <span>Your current city, country for delivery:</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <span mr-2>{{countryCitySelectorService.selectedCity}},</span>
+            <span>{{countryCitySelectorService.selectedCountry}}</span>
+        </div>
+    </div> -->
+</ng-container>

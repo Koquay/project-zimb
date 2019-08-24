@@ -14,8 +14,6 @@ import { RequestInterceptor } from './shared/interceptors/request-interceptor';
   declarations: [
     AppComponent,
     HomeComponent,
-    // FoodProductComponent
-
   ],
   imports: [
     BrowserModule,

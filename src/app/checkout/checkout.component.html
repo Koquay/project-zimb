@@ -5,6 +5,8 @@
 
 <div class="container view-height mt-4">
     <app-page-header></app-page-header>
+    <app-country-city-selected></app-country-city-selected>
+
     <section id="checkout" class="p-4 mt-4">
         <div class="row mb-2">
             <div class="col">
@@ -95,7 +97,7 @@
                         <div class="col-12 col-lg-4 ml-lg-5">
                             <div class="form-row">
                                 <div class="col delivery p-4">
-                                    <div class="form-row">
+                                    <!-- <div class="form-row">
                                         <div class="col-12">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="radio" id="formCheck-1" name="deliveryMethod" [(ngModel)]="order.delivery.method" value="PickUp"
@@ -112,7 +114,7 @@
                                                 <label class="form-check-label ml-1" for="formCheck-2">Delivery</label>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="form-row">
                                         <div class="col">
                                             <div class="form-row mt-2">
@@ -138,13 +140,13 @@
                                                 </div>
                                             </div>
 
-                                            <ng-container *ngIf="order.delivery.method=='Delivery'" id="delivery-address">
+                                            <ng-container id="delivery-address">
                                                 <div class="form-row mt-2">
                                                     <div class="col-12">
                                                         <span>Address:</span>
                                                     </div>
                                                     <div class="col col-md-6 col-lg-12">
-                                                        <ng-container *ngIf="order.delivery.method=='Delivery'">
+                                                        <ng-container>
                                                             <input class="form-control" type="text" required name="address" id="address" [(ngModel)]="order.delivery.address" #address="ngModel">
                                                             <div *ngIf="address.invalid && (address.dirty || address.touched)" class="primary-color">
                                                                 Address is required
@@ -157,14 +159,31 @@
                                                         <span>City:</span>
                                                     </div>
                                                     <div class="col col-md-6 col-lg-12">
-                                                        <ng-container *ngIf="order.delivery.method=='Delivery'">
-                                                            <input class="form-control" type="text" required name="city" id="city" [(ngModel)]="order.delivery.city" #city="ngModel">
+                                                        <ng-container>
+                                                            <input class="form-control" type="text" required name="city" id="city" 
+                                                                readonly [(ngModel)]="countryCitySelectorService.selectedCity" #city="ngModel"
+                                                                class="cityCountry">
                                                             <div *ngIf="city.invalid && (city.dirty || city.touched)" class="primary-color">
                                                                 City is required
                                                             </div>
                                                         </ng-container>
                                                     </div>
                                                 </div>
+                                                <div class="form-row mt-2">
+                                                        <div class="col-12">
+                                                            <span>Country:</span>
+                                                        </div>
+                                                        <div class="col col-md-6 col-lg-12">
+                                                            <ng-container>
+                                                                <input class="form-control" type="text" required name="country" id="country" 
+                                                                    readonly [(ngModel)]="countryCitySelectorService.selectedCountry" #country="ngModel"
+                                                                        class="cityCountry">
+                                                                <div *ngIf="country.invalid && (country.dirty || country.touched)" class="primary-color">
+                                                                    Country is required
+                                                                </div>
+                                                            </ng-container>
+                                                        </div>
+                                                    </div>
                                                 <div class="form-row mt-2">
                                                     <div class="col-12">
                                                         <span>Delivery Instructions; (If any):</span>

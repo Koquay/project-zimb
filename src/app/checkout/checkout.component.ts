@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { OrderService } from '../order/order.service';
 import { Order, MenuItem } from '../shared/models/data-model';
 import { MessageService } from '../shared/message/message/message.service';
+import { CountryCitySelectorService } from '../shared/components/country-city-selector/country-city-selector.service';
 
 @Component({
   selector: 'app-checkout',
@@ -14,7 +15,8 @@ export class CheckoutComponent implements OnInit {
 
   constructor(
     private orderService: OrderService,
-    private messageService:MessageService
+    private messageService:MessageService,
+    private countryCitySelectorService:CountryCitySelectorService
   ) { }
 
   ngOnInit() {

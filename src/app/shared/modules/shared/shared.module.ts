@@ -9,6 +9,8 @@ import {FormsModule} from '@angular/forms';
 import { PageHeaderComponent } from '../../components/page-header/page-header.component';
 import { MessageComponent } from '../../message/message/message.component';
 import { BannerComponent } from '../../components/banner/banner.component';
+import { CountryCitySelectorComponent } from '../../components/country-city-selector/country-city-selector.component';
+import { CountryCitySelectedComponent } from '../../components/country-city-selected/country-city-selected.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,8 @@ import { BannerComponent } from '../../components/banner/banner.component';
     PageHeaderComponent,
     MessageComponent, 
     BannerComponent,
+    CountryCitySelectorComponent,
+    CountryCitySelectedComponent
   ],
   exports: [
     HeaderComponent,
@@ -26,6 +30,8 @@ import { BannerComponent } from '../../components/banner/banner.component';
     PageHeaderComponent,
     MessageComponent, 
     BannerComponent,
+    CountryCitySelectorComponent,
+    CountryCitySelectedComponent
   ],
   imports: [
     CommonModule,

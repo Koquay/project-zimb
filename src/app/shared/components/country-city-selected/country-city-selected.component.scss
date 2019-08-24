@@ -1,0 +1,15 @@
+$primary: #cbba83;
+$secondary: #ffecb3;
+$tertiary: #ffffe5;
+$deep-brown: #6a5636;
+
+.location {
+    color: $deep-brown;
+    font-size: 1.5rem;
+    font-weight: bolder;
+}
+
+.changeLocation {
+    font-size: .8rem;
+    color: $deep-brown;
+}
