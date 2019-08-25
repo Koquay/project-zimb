@@ -22,6 +22,11 @@ const MenuItemSchema = new Schema({
 }, {_id: false});
 
 const OrderSchema = new Schema({    
+    order_no: {
+        type: Number,
+        required: true,
+        unique: true
+    },
     discount: {
         type: Number,
     },

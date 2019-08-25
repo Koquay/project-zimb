@@ -16,6 +16,7 @@ export class MenuItem {
 
 export class Order {    
     _id: string;
+    order_no: number;
     subtotal: number;
     total: number;
     special_instructions: string;
@@ -46,4 +47,9 @@ export class User {
         private token = '',
     ) {}
 
+}
+
+export class SearchCriteria {
+    order_no: string;
+    phone: string;
 }

@@ -6,6 +6,7 @@ import { OrderListComponent } from './order-list.component';
 import { SharedModule } from '../shared/modules/shared/shared.module';
 
 import {NgxMaskModule, IConfig} from 'ngx-mask'
+import { FormsModule } from '@angular/forms';
 export let options: Partial<IConfig> | (() => Partial<IConfig>);  
 
 
@@ -15,7 +16,8 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
     CommonModule,
     OrderListRoutingModule,
     NgxMaskModule.forRoot(options),
-    SharedModule
+    SharedModule,
+    FormsModule
   ]
 })
 export class OrderListModule { }

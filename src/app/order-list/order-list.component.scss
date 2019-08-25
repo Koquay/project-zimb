@@ -50,3 +50,23 @@ $deep-brown: #6a5636;
 .view-height {
     min-height: 61vh !important;
   }
+
+  #search-header {
+    font-size: 2rem;
+    // color: $secondary;
+    border-bottom: solid $primary;
+}
+
+#search {
+    button {
+        background: $deep-brown;
+        padding: .4rem 2.2rem;
+        font-weight: bold;
+        color: $tertiary;
+        border: solid $primary;
+
+        &:hover {
+            background: $primary;
+        }
+    }
+}

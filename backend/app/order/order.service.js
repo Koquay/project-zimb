@@ -79,3 +79,79 @@ exports.setOrderStatus = async (id, status) => {
         throw error;
     }
 }
+
+exports.searchOrder = async (searchCriteria) => {
+    let searchParams = JSON.parse(searchCriteria);
+
+    let aggregatePipeline = buildAggregatePipeline(searchParams);
+    console.log('aggregatePipeline', aggregatePipeline)
+
+    try {
+        const orders = await Order.aggregate(aggregatePipeline);
+        console.log('orders', orders)
+        return orders;
+    } catch (errorx) {
+        let error = new Error();
+        error.message = 'There is a problem searching for orders. Please try again or contact IT Department.';
+        error.status = '500';
+        throw error;
+    }
+}
+
+const buildAggregatePipeline = (searchParams) => {
+    let { order_no, phone } = searchParams;
+    console.log('order_no', order_no)
+
+    let aggregatePipeline = [];
+
+    let orderNoMatch = buildOrderNoMatch(order_no);
+    if (orderNoMatch) {
+        aggregatePipeline.push(orderNoMatch);
+    }
+
+    let phoneMatch = buildPhoneMatch(phone);
+    if (phoneMatch) {
+        aggregatePipeline.push(phoneMatch);
+    }
+
+    aggregatePipeline.push(buildSortMatch());
+    checkForEmptyAggregate(aggregatePipeline);
+
+    return aggregatePipeline;
+}
+
+function checkForEmptyAggregate(aggregatePipeline) {
+    if (aggregatePipeline.length == 0) {
+        aggregatePipeline.push({ $match: { order_no: { $ne: null } } });
+    }
+}
+
+const buildOrderNoMatch = (orderNo) => {
+    if (orderNo && orderNo.trim().length) {
+        return { $match: { order_no: { $eq: +orderNo.trim() } } }
+    }
+
+    return null;
+}
+
+const buildPhoneMatch = (phone) => {
+    if (phone && phone.trim().length) {
+        let match = { $match: { "delivery.phone": { $eq: phone.trim() } } }
+        console.log('phone match', match)
+        return match;
+    }
+
+    return null;
+}
+
+const buildFirstNameMatch = (firstName) => {
+    if (firstName.length) {
+        return { $match: { first_name: firstName } }
+    }
+
+    return null;
+}
+
+function buildSortMatch() {
+    return { $sort: { created_on: -1 } };
+}

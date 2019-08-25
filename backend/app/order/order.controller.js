@@ -35,3 +35,16 @@ exports.setOrderStatus = async(req, res) => {
         return ErrorHandler.handleError('setOrderStatus ERROR', res, error);
     }    
 }
+
+exports.searchOrder = async (req, res) => {
+    console.log('*** Order Controller SEARCH ***');
+    console.log('req.query', req.query)
+
+    try {
+        const orders = await OrderService.searchOrder(req.query.searchCriteria);
+        res.status(200).json(orders);
+        return;
+    } catch (error) {
+        return ErrorHandler.handleError('ORDER SEARCH ERROR', res, error);
+    }
+}
