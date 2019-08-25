@@ -36,7 +36,7 @@ export class HomeComponent implements OnInit {
     this.countryCitySelectorService.getCityCountry().subscribe(cityCountry => {
       console.log('city country', cityCountry)
       if (cityCountry.city == null || cityCountry.country == null) {
-        this.messageService.sendInfo("Please select a country and city for your delivery.")
+        this.messageService.sendInfo("Please choose a country and city for your delivery.")
         return;
       } else {
         this.router.navigate(['/food-product', business])

@@ -38,11 +38,6 @@ export class CheckoutComponent implements OnInit, AfterViewInit {
   private placeOrder() {
     console.log('placing order', this.order)
 
-    // this.orderService.placeOrder().subscribe(order => {
-    //   this.messageService.sendSuccess("Your order was successfully placed. It will be ready in about 15 minutes.")
-    // });
-
-
     this.stripeService.createToken(this.card, { name }).subscribe(result => {
       console.log('result', result)
 
@@ -51,7 +46,8 @@ export class CheckoutComponent implements OnInit, AfterViewInit {
         this.order.order_no = Math.floor((Math.random() * 1000000) + 1);
         console.log('order', this.order)
         this.orderService.placeOrder().subscribe(order => {
-          this.messageService.sendSuccess("Your order was successfully placed.")
+          this.messageService.sendSuccess("Your order was successfully placed. Your order number is " + 
+            this.order.order_no + ". Please save it for future reference.")
         });
       } else if (result.error) {
         console.log('result.error', result.error.message);

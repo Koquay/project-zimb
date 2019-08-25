@@ -146,8 +146,7 @@
                                                     </div>
                                                     <div class="col col-md-6 col-lg-12">
                                                         <ng-container>
-                                                            <input class="form-control" type="text" required name="city" id="city" readonly [(ngModel)]="order.delivery.city" #city="ngModel"
-                                                                class="cityCountry">
+                                                            <input class="form-control cityCountry" type="text" required name="city" id="city" readonly [(ngModel)]="order.delivery.city" #city="ngModel">
                                                             <div *ngIf="city.invalid && (city.dirty || city.touched)" class="error-color">
                                                                 City is required
                                                             </div>
@@ -160,8 +159,8 @@
                                                     </div>
                                                     <div class="col col-md-6 col-lg-12">
                                                         <ng-container>
-                                                            <input class="form-control" type="text" required name="country" id="country" readonly [(ngModel)]="order.delivery.country"
-                                                                #country="ngModel" class="cityCountry">
+                                                            <input class="form-control cityCountry" type="text" required name="country" id="country" readonly [(ngModel)]="order.delivery.country"
+                                                                #country="ngModel">
                                                             <div *ngIf="country.invalid && (country.dirty || country.touched)" class="error-color">
                                                                 Country is required
                                                             </div>
