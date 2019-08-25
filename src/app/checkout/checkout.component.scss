@@ -25,7 +25,7 @@ $red: #a30000;
     }
     
     .delivery {
-        background: $secondary;   
+        background: $primary;   
         font-size:1.2rem;
 
         #delivery-address {
@@ -61,7 +61,7 @@ $red: #a30000;
       }
 
       .place-order-btn {
-        background: $primary;
+        background: $deep-brown;
         color: $tertiary;
         font-weight: bold;
         letter-spacing: .5rem;
@@ -69,8 +69,7 @@ $red: #a30000;
         border-color: $primary !important; 
     
         &:hover {
-            background: $deep-brown;
-            color: black;
+            background: $primary;
         }
     }
 

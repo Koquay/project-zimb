@@ -34,6 +34,7 @@ export class Delivery {
     public method:String = "PickUp";
     public name:String;
     public phone:String;
+    public email:String;
     public address:String;
     public city:String;
     public country:String;

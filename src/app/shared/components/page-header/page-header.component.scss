@@ -4,7 +4,7 @@ $tertiary: #ffffe5;
 $deep-brown: #6a5636;
 
 .page-header-btn {
-    background: $primary;
+    background: $deep-brown;
     color: $tertiary;
     font-weight: bold;
     letter-spacing: .5rem;
@@ -12,8 +12,7 @@ $deep-brown: #6a5636;
     border-color: $primary !important; 
 
     &:hover {
-        background: $deep-brown;
-        color: black;
+        background: $primary;
     }
 }
 

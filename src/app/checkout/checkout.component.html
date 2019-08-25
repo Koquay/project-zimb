@@ -125,7 +125,17 @@
                                                     </div>
                                                 </div>
                                             </div>
-
+                                            <div class="form-row mt-2">
+                                                    <div class="col col-md-6 col-lg-12">
+                                                        <label>Email</label>
+                                                        <input class="form-control" type="text" required [(ngModel)]="order.delivery.email" #email="ngModel" name="email">
+                                                        <div *ngIf="email.invalid && (email.dirty || email.touched)" class="error-color">
+                                                            <div *ngIf="email.errors.required">
+                                                                email is required
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             <ng-container id="delivery-address">
                                                 <div class="form-row mt-2">
                                                     <div class="col-12">

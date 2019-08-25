@@ -45,9 +45,9 @@ const chargeCard = async (newOrder) => {
         const result = await stripe.charges.create({
             amount: Math.round(newOrder.total) * 100,
             currency: 'cad',
-            description: 'Order Number: ' + newOrder.order_no,
+            description: 'Wannet Global - Order Number: ' + newOrder.order_no,
             source: newOrder.card_token,
-            // receipt_email: newOrder.customer.shipping_address.email,
+            receipt_email: newOrder.delivery.email,
         });
 
         console.log('result', result);

@@ -4,13 +4,13 @@ $tertiary: #ffffe5;
 $deep-brown: #6a5636;
 
 button {
-    background: $primary;
+    background: $deep-brown;
     color: $tertiary;
     font-weight: bold;
     border-color: $primary !important;   
 
     &:hover {
-        background: $deep-brown;
+        background: $primary;
     }
 }
 
