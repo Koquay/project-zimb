@@ -6,7 +6,8 @@ import { FoodProductComponent } from './food-product.component';
 const routes: Routes = [
   {
     path: ':business',
-    component: FoodProductComponent
+    component: FoodProductComponent,
+    data: { breadcrumb: 'Menu'}
   }
 ];
 

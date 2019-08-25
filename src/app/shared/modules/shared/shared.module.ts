@@ -11,6 +11,7 @@ import { MessageComponent } from '../../message/message/message.component';
 import { BannerComponent } from '../../components/banner/banner.component';
 import { CountryCitySelectorComponent } from '../../components/country-city-selector/country-city-selector.component';
 import { CountryCitySelectedComponent } from '../../components/country-city-selected/country-city-selected.component';
+import { BreadcrumbComponent } from '../../breadcrumb/breadcrumb.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { CountryCitySelectedComponent } from '../../components/country-city-sele
     MessageComponent, 
     BannerComponent,
     CountryCitySelectorComponent,
-    CountryCitySelectedComponent
+    CountryCitySelectedComponent,
+    BreadcrumbComponent
   ],
   exports: [
     HeaderComponent,
@@ -31,7 +33,8 @@ import { CountryCitySelectedComponent } from '../../components/country-city-sele
     MessageComponent, 
     BannerComponent,
     CountryCitySelectorComponent,
-    CountryCitySelectedComponent
+    CountryCitySelectedComponent,
+    BreadcrumbComponent
   ],
   imports: [
     CommonModule,

@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'project-zimb';
+
+  constructor() {
+    localStorage.removeItem('breadcrumbs')
+    let breadcrumbs = [{breadcrumb: 'Home', url: '/home'}];
+    localStorage.setItem('breadcrumbs', JSON.stringify(breadcrumbs)) 
+  }
 }
