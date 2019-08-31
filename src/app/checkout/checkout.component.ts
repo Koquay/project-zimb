@@ -85,8 +85,8 @@ export class CheckoutComponent implements OnInit, AfterViewInit {
   private getOrder() {
     this.orderService.getOrder().subscribe(order => {
       this.order = order;
-      this.order.delivery.city = this.countryCitySelectorService.selectedCity;
-      this.order.delivery.country = this.countryCitySelectorService.selectedCountry;      
+      this.order.receiver.city = this.countryCitySelectorService.selectedCity;
+      this.order.receiver.country = this.countryCitySelectorService.selectedCountry;      
       console.log('order', order)
     })
   }
@@ -116,7 +116,7 @@ export class CheckoutComponent implements OnInit, AfterViewInit {
   }
 
   private showDelivery() {
-    console.log('delivery', this.order.delivery)
+    console.log('delivery', this.order.buyer, this.order.receiver)
   }
 
   

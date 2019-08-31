@@ -3,7 +3,7 @@
 <app-banner></app-banner>
 <app-breadcrumb></app-breadcrumb>
 
-<div class="container view-height mt-4">    
+<div class="container view-height mt-4">
     <app-page-header></app-page-header>
     <app-country-city-selected></app-country-city-selected>
 
@@ -104,9 +104,10 @@
                                     <div class="form-row">
                                         <div class="col">
                                             <div class="form-row mt-2">
+                                                <div class="col-12 text-center"><h3>Buyer's Information</h3></div>
                                                 <div class="col-12"><span>Name:</span></div>
                                                 <div class="col col-md-6 col-lg-12">
-                                                    <input class="form-control" type="text" required name="name" id="name" [(ngModel)]="order.delivery.name" #name="ngModel">
+                                                    <input class="form-control" type="text" required name="name" id="name" [(ngModel)]="order.buyer.name" #name="ngModel">
                                                     <div *ngIf="name.invalid && (name.dirty || name.touched)" class="error-color">
                                                         <div *ngIf="name.errors.required">
                                                             Name is required
@@ -117,7 +118,7 @@
                                             <div class="form-row mt-2">
                                                 <div class="col col-md-6 col-lg-12">
                                                     <label>Phone</label>
-                                                    <input class="form-control" type="text" required [(ngModel)]="order.delivery.phone" #phone="ngModel" name="phone" mask="(000) 000 0000">
+                                                    <input class="form-control" type="text" required [(ngModel)]="order.buyer.phone" #phone="ngModel" name="phone" mask="(000) 000 0000">
                                                     <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="error-color">
                                                         <div *ngIf="phone.errors.required">
                                                             Phone is required
@@ -126,16 +127,16 @@
                                                 </div>
                                             </div>
                                             <div class="form-row mt-2">
-                                                    <div class="col col-md-6 col-lg-12">
-                                                        <label>Email</label>
-                                                        <input class="form-control" type="text" required [(ngModel)]="order.delivery.email" #email="ngModel" name="email">
-                                                        <div *ngIf="email.invalid && (email.dirty || email.touched)" class="error-color">
-                                                            <div *ngIf="email.errors.required">
-                                                                email is required
-                                                            </div>
+                                                <div class="col col-md-6 col-lg-12">
+                                                    <label>Email</label>
+                                                    <input class="form-control" type="text" required [(ngModel)]="order.buyer.email" #email="ngModel" name="email">
+                                                    <div *ngIf="email.invalid && (email.dirty || email.touched)" class="error-color">
+                                                        <div *ngIf="email.errors.required">
+                                                            Email is required
                                                         </div>
                                                     </div>
                                                 </div>
+                                            </div>
                                             <ng-container id="delivery-address">
                                                 <div class="form-row mt-2">
                                                     <div class="col-12">
@@ -143,7 +144,7 @@
                                                     </div>
                                                     <div class="col col-md-6 col-lg-12">
                                                         <ng-container>
-                                                            <input class="form-control" type="text" required name="address" id="address" [(ngModel)]="order.delivery.address" #address="ngModel">
+                                                            <input class="form-control" type="text" required name="address" id="address" [(ngModel)]="order.buyer.address" #address="ngModel">
                                                             <div *ngIf="address.invalid && (address.dirty || address.touched)" class="error-color">
                                                                 Address is required
                                                             </div>
@@ -156,7 +157,98 @@
                                                     </div>
                                                     <div class="col col-md-6 col-lg-12">
                                                         <ng-container>
-                                                            <input class="form-control cityCountry" type="text" required name="city" id="city" readonly [(ngModel)]="order.delivery.city" #city="ngModel">
+                                                            <input class="form-control cityCountry" required type="text" name="buyerCity" id="buyerCity" [(ngModel)]="order.buyer.city"
+                                                                #buyerCity="ngModel">
+                                                            <div *ngIf="buyerCity.invalid && (buyerCity.dirty || buyerCity.touched)" class="error-color">
+                                                                City is required
+                                                            </div>
+                                                        </ng-container>
+                                                    </div>
+                                                </div>
+                                                <div class="form-row mt-2">
+                                                    <div class="col-12">
+                                                        <span>Country:</span>
+                                                    </div>
+                                                    <div class="col col-md-6 col-lg-12">
+                                                        <ng-container>
+                                                            <input class="form-control cityCountry" required type="text" name="buyerCountry" id="buyerCountry" [(ngModel)]="order.buyer.country"
+                                                                #buyerCountry="ngModel">
+                                                            <div *ngIf="buyerCountry.invalid && (buyerCountry.dirty || buyerCountry.touched)" class="error-color">
+                                                                Country is required
+                                                            </div>
+                                                        </ng-container>
+                                                    </div>
+                                                </div>
+                                                <div class="form-row mt-2">
+                                                    <div class="col-12">
+                                                        <span>Delivery Instructions; (If any):</span>
+                                                    </div>
+                                                    <div class="col col-md-6 col-lg-12">
+                                                        <textarea class="form-control" name="instruction" id="instruction" [(ngModel)]="order.buyer.instruction">
+                                                        </textarea>
+                                                    </div>
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                    <div class="form-row mt-3">
+                                        <div class="col">
+                                            <div class="form-row mt-2">
+                                                    <div class="col-12 text-center"><h3>Receiver's Information</h3></div>
+                                                <div class="col-12"><span>Name:</span></div>
+                                                <div class="col col-md-6 col-lg-12">
+                                                    <input class="form-control" type="text" required name="name" id="name" [(ngModel)]="order.receiver.name" #name="ngModel">
+                                                    <div *ngIf="name.invalid && (name.dirty || name.touched)" class="error-color">
+                                                        <div *ngIf="name.errors.required">
+                                                            Name is required
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-row mt-2">
+                                                <div class="col col-md-6 col-lg-12">
+                                                    <label>Phone</label>
+                                                    <input class="form-control" type="text" [(ngModel)]="order.receiver.phone" #phone="ngModel" name="phone" mask="(000) 000 0000">
+                                                    <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="error-color">
+                                                        <div *ngIf="phone.errors.required">
+                                                            Phone is required
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-row mt-2">
+                                                <div class="col col-md-6 col-lg-12">
+                                                    <label>Email</label>
+                                                    <input class="form-control" type="text" [(ngModel)]="order.receiver.email" #email="ngModel" name="email">
+                                                    <div *ngIf="email.invalid && (email.dirty || email.touched)" class="error-color">
+                                                        <div *ngIf="email.errors.required">
+                                                            email is required
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <ng-container id="delivery-address">
+                                                <div class="form-row mt-2">
+                                                    <div class="col-12">
+                                                        <span>Address:</span>
+                                                    </div>
+                                                    <div class="col col-md-6 col-lg-12">
+                                                        <ng-container>
+                                                            <input class="form-control" type="text" required name="address" id="address" [(ngModel)]="order.receiver.address" #address="ngModel">
+                                                            <div *ngIf="address.invalid && (address.dirty || address.touched)" class="error-color">
+                                                                Address is required
+                                                            </div>
+                                                        </ng-container>
+                                                    </div>
+                                                </div>
+                                                <div class="form-row mt-2">
+                                                    <div class="col-12">
+                                                        <span>City:</span>
+                                                    </div>
+                                                    <div class="col col-md-6 col-lg-12">
+                                                        <ng-container>
+                                                            <input class="form-control cityCountry" type="text" required name="city" id="city" readonly [(ngModel)]="order.receiver.city"
+                                                                #city="ngModel">
                                                             <div *ngIf="city.invalid && (city.dirty || city.touched)" class="error-color">
                                                                 City is required
                                                             </div>
@@ -169,21 +261,12 @@
                                                     </div>
                                                     <div class="col col-md-6 col-lg-12">
                                                         <ng-container>
-                                                            <input class="form-control cityCountry" type="text" required name="country" id="country" readonly [(ngModel)]="order.delivery.country"
+                                                            <input class="form-control cityCountry" type="text" required name="country" id="country" readonly [(ngModel)]="order.receiver.country"
                                                                 #country="ngModel">
                                                             <div *ngIf="country.invalid && (country.dirty || country.touched)" class="error-color">
                                                                 Country is required
                                                             </div>
                                                         </ng-container>
-                                                    </div>
-                                                </div>
-                                                <div class="form-row mt-2">
-                                                    <div class="col-12">
-                                                        <span>Delivery Instructions; (If any):</span>
-                                                    </div>
-                                                    <div class="col col-md-6 col-lg-12">
-                                                        <textarea class="form-control" name="instruction" id="instruction" [(ngModel)]="order.delivery.instruction">
-                                                        </textarea>
                                                     </div>
                                                 </div>
                                             </ng-container>

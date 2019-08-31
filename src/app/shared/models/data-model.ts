@@ -25,13 +25,25 @@ export class Order {
     card_id: string;
     created_on: Date;
     created_time: Date;
-    public delivery:Delivery = new Delivery();
+    // public delivery:Delivery = new Delivery();
+    public buyer:Customer = new Customer();
+    public receiver:Customer = new Customer();
     public menuItems:MenuItem[] = [];
     
 }
 
-export class Delivery {
-    public method:String = "PickUp";
+// export class Delivery {
+//     public method:String = "PickUp";
+//     public name:String;
+//     public phone:String;
+//     public email:String;
+//     public address:String;
+//     public city:String;
+//     public country:String;
+//     public instruction:String;    
+// }
+
+export class Customer {
     public name:String;
     public phone:String;
     public email:String;

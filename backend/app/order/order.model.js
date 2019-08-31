@@ -4,8 +4,18 @@ const Schema = mongoose.Schema;
 
 
 
-const DeliverySchema = new Schema({
-    method: String,
+// const DeliverySchema = new Schema({
+//     method: String,
+//     name: String,
+//     phone: String,
+//     email: String,
+//     address: String,
+//     city: String,
+//     country: String,
+//     instruction: String,
+// }, {_id: false});
+
+const CustomerSchema = new Schema({
     name: String,
     phone: String,
     email: String,
@@ -49,7 +59,9 @@ const OrderSchema = new Schema({
     card_id: {
         type: String,
     },
-    delivery: DeliverySchema,
+    // delivery: DeliverySchema,
+    buyer: CustomerSchema,
+    receiver: CustomerSchema,
     menuItems: [MenuItemSchema],
 
     created_on: {

@@ -29,15 +29,6 @@ export class MessageComponent implements OnInit {
       
       let el: HTMLElement = this.openMessage.nativeElement;
       el.click();
-
-      // this.disableAlert.subscribe(() => {
-      //   this.removeAlert();
-      // });
     })
   }
-
-  private removeAlert() {
-    this.alert = null;
-  }
-
 }

@@ -27,4 +27,40 @@
             <hr class="my-1">
         </div>
     </div>
+
+    <ng-container class="hidden">
+        <a #openMessage id="open-message" data-toggle="modal" data-target="#sideModal">CLICK</a>
+    </ng-container>
+
+    <div #debugSidemodal class="modal fade" id="sideModal" tabindex="-1" role="dialog" aria-labelledby="sideModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h3 class="modal-title">Choose Side</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12 px-5 py-4">
+                            <ul class="list-group">
+                                <li class="list-group-item" *ngFor="let side of sides">
+                                    <a class="side" (click)="addSide(side)" data-dismiss="modal">{{side}}</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="modal-footer">
+                    <button type="button" class="btn btn-primary btn-block font-weight-bold" data-dismiss="modal">
+                        OK
+                    </button>
+                </div> -->
+            </div>
+        </div>
+    </div>
+
+
+
 </ng-container>

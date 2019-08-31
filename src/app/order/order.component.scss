@@ -13,7 +13,9 @@ $deep-brown: #6a5636;
 
     #items {
         background: $tertiary;
-        // padding: 1rem 2rem 0rem;
+        h5 {
+            font-weight: bold;
+        }
     }
     
     #title {
@@ -86,6 +88,5 @@ $deep-brown: #6a5636;
         min-height: 64vh !important;
       }
   }
-  
   
   

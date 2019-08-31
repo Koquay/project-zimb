@@ -19,3 +19,14 @@ button {
     max-height: 150px;
     overflow-y: scroll;
 }
+
+.modal-body {
+    background: $tertiary;
+    font-size: 1.2rem;
+
+    li {
+        &:hover {
+            background: $secondary;
+        }
+    }
+}

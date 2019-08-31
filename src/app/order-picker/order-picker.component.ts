@@ -25,8 +25,10 @@ export class OrderPickerComponent implements OnInit {
 
   private getOrder() {
     let id = this.activatedRoute.snapshot.paramMap.get('id');
+    console.log('order-picker id', id);
 
     this.orderListService.getOrder(id).subscribe(order => {
+      console.log('order', this.order)
       this.order = order;
     })
   }

@@ -3,29 +3,34 @@
 <app-banner></app-banner>
 <app-breadcrumb></app-breadcrumb>
 
-<div class="container  view-height mt-4" id="order-picker">    
+<div class="container  view-height mt-4" id="order-picker">
     <div class="row text-center mb-4">
         <div class="col"><span class="heading">Order<br></span></div>
     </div>
     <section id="address">
-        <div class="row mb-4 text-center">
-            <div class="col offset-lg-5 text-left">
+        <div class="row mb-4 text-center justify-content-lg-around">
+            <div class="col-12 col-lg-4 text-left">
+                <div class="row">
+                    <div class="col-12">
+                        <h4 class="customer-info">Buyer's Information</h4>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col">
                         <span class="mr-3 font-weight-bold">Name:</span>
-                        <span>{{order.delivery.name}}</span>
+                        <span>{{order.buyer.name}}</span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
                         <span class="mr-3 font-weight-bold">Phone:</span>
-                        <span>{{order.delivery.phone | mask: '(000) 000-0000'}}</span>
+                        <span>{{order.buyer.phone | mask: '(000) 000-0000'}}</span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
                         <span class="mr-3 font-weight-bold">Address:</span>
-                        <span>{{order.delivery.address}}</span>
+                        <span>{{order.buyer.address}}</span>
                     </div>
                 </div>
                 <div class="row">
@@ -33,7 +38,7 @@
                         <span class="mr-3 font-weight-bold">
                             City:
                         </span>
-                        <span>{{order.delivery.city}}</span>
+                        <span>{{order.buyer.city}}</span>
                     </div>
                 </div>
                 <div class="row">
@@ -41,15 +46,118 @@
                         <span class="mr-3 font-weight-bold">
                             Country:
                         </span>
-                        <span>{{order.delivery.country}}</span>
+                        <span>{{order.buyer.country}}</span>
+                    </div>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col">
+                        <span class="mr-3 font-weight-bold"><strong>Order Time</strong>:</span>
+                        <span>{{order.created_on | date:'short' }}<br></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-4 mt-md-3 mt-lg-0 text-left">
+                <div class="row">
+                    <div class="col-12">
+                        <h4 class="customer-info">Receiver's Information</h4>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
-                        <span class="mr-3 font-weight-bold">Delivery Method:</span>
-                        <span>{{order.delivery.method}}</span>
+                        <span class="mr-3 font-weight-bold">Name:</span>
+                        <span>{{order.receiver.name}}</span>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col">
+                        <span class="mr-3 font-weight-bold">Phone:</span>
+                        <span>{{order.receiver.phone | mask: '(000) 000-0000'}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <span class="mr-3 font-weight-bold">Address:</span>
+                        <span>{{order.receiver.address}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <span class="mr-3 font-weight-bold">
+                            City:
+                        </span>
+                        <span>{{order.receiver.city}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <span class="mr-3 font-weight-bold">
+                            Country:
+                        </span>
+                        <span>{{order.receiver.country}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="address">
+        <div class="row mb-4 text-center">
+            <div class="col offset-lg-5 text-left">
+                <div class="row" *ngIf="order.status != 'Delivered'">
+                    <div class="col">
+                        <span class="mr-3 font-weight-bold">Pending:</span>
+                        <input type="radio" class="mr-1" name="status" [(ngModel)]="order.status" value="Pending" (change)="setOrderStatus()">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <span class="mr-3 font-weight-bold">Delivered:</span>
+                        <input type="radio" class="mr-1" name="status" [(ngModel)]="order.status" value="Delivered" (change)="setOrderStatus()">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- <section id="address">
+        <div class="row mb-4 text-center">
+            <div class="col offset-lg-5 text-left">
+                <div class="row">
+                    <div class="col">
+                        <span class="mr-3 font-weight-bold">Name:</span>
+                        <span>{{order.receiver.name}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <span class="mr-3 font-weight-bold">Phone:</span>
+                        <span>{{order.receiver.phone | mask: '(000) 000-0000'}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <span class="mr-3 font-weight-bold">Address:</span>
+                        <span>{{order.receiver.address}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <span class="mr-3 font-weight-bold">
+                            City:
+                        </span>
+                        <span>{{order.receiver.city}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <span class="mr-3 font-weight-bold">
+                            Country:
+                        </span>
+                        <span>{{order.receiver.country}}</span>
+                    </div>
+                </div>
+
                 <div class="row mb-4">
                     <div class="col">
                         <span class="mr-3 font-weight-bold"><strong>Order Time</strong>:</span>
@@ -70,7 +178,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
     <div class="row">
         <div class="col">
             <hr>

@@ -47,7 +47,7 @@ const chargeCard = async (newOrder) => {
             currency: 'cad',
             description: 'Wannet Global - Order Number: ' + newOrder.order_no,
             source: newOrder.card_token,
-            receipt_email: newOrder.delivery.email,
+            receipt_email: newOrder.buyer.email,
         });
 
         console.log('result', result);
@@ -136,7 +136,7 @@ const buildOrderNoMatch = (orderNo) => {
 
 const buildPhoneMatch = (phone) => {
     if (phone && phone.trim().length) {
-        let match = { $match: { "delivery.phone": { $eq: phone.trim() } } }
+        let match = { $match: { "buyer.phone": { $eq: phone.trim() } } }
         console.log('phone match', match)
         return match;
     }
