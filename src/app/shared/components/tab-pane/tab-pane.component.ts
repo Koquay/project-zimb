@@ -3,6 +3,7 @@ import { Menu } from '../../models/data-model';
 import { TabPaneService } from './tab-pane.service';
 import { OrderService } from '../../../order/order.service';
 import { FoodProductService } from '../../../food-product/food-product.service';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -17,25 +18,23 @@ export class TabPaneComponent implements OnInit {
   private menuData;
   private quantity = 1;
   private sides;
+  private drinks;
   private currentItem;
-  @ViewChild('openMessage', { static: true }) openMessage: ElementRef<HTMLElement>;
-  @ViewChild('debugSidemodal', { static: true }) debugSidemodal: ElementRef<HTMLElement>;
+  @ViewChild('openSidesModal', { static: true }) openSidesModal: ElementRef<HTMLElement>;
+  @ViewChild('openDrinksModal', { static: true }) openDrinksModal: ElementRef<HTMLElement>;
+  
+  closeResult: string;
 
   constructor(
     private tabPaneService: TabPaneService,
     private orderService: OrderService,
-    private foodProductService: FoodProductService
+    private foodProductService: FoodProductService,
+    private modalService: NgbModal
   ) { }
 
   ngOnInit() {
     this.getMenuStaticData();
   }
-
-  // private getSides() {
-  //   this.foodProductService.getMenuType('sides').subscribe(sides => {
-  //     this.sides = sides;
-  //   })
-  // }
 
   private getMenuStaticData() {
     this.tabPaneService.getMenuStaticData().subscribe(data => {
@@ -45,25 +44,37 @@ export class TabPaneComponent implements OnInit {
     })
   }
 
-  private addToOrder(item, chosenSide?) {
-    console.log('item', item)
-    this.currentItem = item;
-    if (item.side && !chosenSide) {
+  private addToOrder(item) {    
+    
+    if(!this.currentItem) {
+      this.currentItem = JSON.parse(JSON.stringify(item));
+    }
+    if (this.currentItem.side && !this.currentItem.chosenSide) {
       this.foodProductService.getSides().subscribe(sides => {
         this.sides = sides;
         console.log('this.sides', this.sides)
-        let el: HTMLElement = this.openMessage.nativeElement; 
-        let el2: HTMLElement = this.debugSidemodal.nativeElement; 
 
-        console.log('el', el)
-        console.log('el2', el2)
+        let el: HTMLElement = this.openSidesModal.nativeElement; 
         el.click();
       })
-    } else {
+    } else if (this.currentItem.drink && !this.currentItem.chosenDrink) {
+      this.foodProductService.getDrinks().subscribe(drinks => {
+        this.drinks = drinks;
+        console.log('this.drinks', this.drinks)
+
+        let el: HTMLElement = this.openDrinksModal.nativeElement; 
+        el.click();
+      })
+    }
+    else {
       let sideAndDrink;
 
-      if(this.currentItem.side) {
-        sideAndDrink = this.currentItem.side;
+      if(this.currentItem.chosenSide) {
+        sideAndDrink = this.currentItem.chosenSide;
+      }
+
+      if(this.currentItem.chosenDrink) {
+        sideAndDrink = sideAndDrink + " + " + this.currentItem.chosenDrink;
       }
       
       if(sideAndDrink) {
@@ -73,57 +84,27 @@ export class TabPaneComponent implements OnInit {
       console.log('menu this.currentItem', this.currentItem);
 
       let newItem = JSON.parse(JSON.stringify(this.currentItem));
-
+      this.currentItem = null;
+      
       this.orderService.addToOrder(newItem).subscribe();
     }
   }
 
-  private addToOrderX(item, chosenSide?, drink?) {
-    this.currentItem = item;
-    if (item.side && !chosenSide) {
-      this.foodProductService.getSides().subscribe(sides => {
-        this.sides = sides;
-        let el: HTMLElement = this.openMessage.nativeElement;
-        el.click();
-      })
-    } else {
-
-      if (item.drink && !drink) {
-        this.foodProductService.getSides().subscribe(sides => {
-          this.sides = sides;
-          let el: HTMLElement = this.openMessage.nativeElement;
-          el.click();
-        })
-      } else {
-        let sideAndDrink;
-
-        if (this.currentItem.side) {
-          sideAndDrink = this.currentItem.side;
-        }
-
-        if (this.currentItem.drink) {
-          sideAndDrink = sideAndDrink + " " + this.currentItem.side;
-        }
-
-        if (sideAndDrink) {
-          this.currentItem.name = this.currentItem.name + " (" + sideAndDrink + ")";
-        }
-
-        console.log('menu this.currentItem', this.currentItem);
-
-        let newItem = JSON.parse(JSON.stringify(this.currentItem));
-
-        this.orderService.addToOrder(newItem).subscribe();
-      }
-
-
-    }
+  open(content) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+    });
   }
 
   private addSide(side) {
-    this.currentItem.side = side;
-    console.log('currentItem', this.currentItem)
-    this.addToOrder(this.currentItem, side);
+    this.currentItem.chosenSide = side;
+    this.addToOrder(this.currentItem);
+  }
+
+  private addDrink(drink) {
+    this.currentItem.chosenDrink = drink;
+    this.addToOrder(this.currentItem);
   }
 
   private getMenuImage(index) {

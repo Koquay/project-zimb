@@ -52,8 +52,8 @@
 
                 <div class="row mb-4">
                     <div class="col">
-                        <span class="mr-3 font-weight-bold"><strong>Order Time</strong>:</span>
-                        <span>{{order.created_on | date:'short' }}<br></span>
+                        <span class="mr-3 font-weight-bold"><strong>Order Date</strong>:</span>
+                        <span>{{order.created_on | date:'shortDate' }}<br></span>
                     </div>
                 </div>
             </div>
@@ -95,6 +95,18 @@
                             Country:
                         </span>
                         <span>{{order.receiver.country}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <span class="mr-3 font-weight-bold"><strong>Delivery Date</strong>:</span>
+                        <span>{{order.delivery_date | date:'shortDate'}}<br></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <span class="mr-3 font-weight-bold"><strong>Zim Delivery Date</strong>:</span>
+                        <span>{{order.zim_delivery_date | date:'shortDate'}}<br></span>
                     </div>
                 </div>
             </div>
@@ -196,7 +208,7 @@
                 <span class="font-weight-bold col-title">Price</span>
             </div>
         </div>
-        <div class="row mb-lg-0 mb-4" *ngFor="let item of order.menuItems">
+        <div class="row mb-lg-3 mb-4" *ngFor="let item of order.menuItems">
             <div class="col-12 col-md-4 col-lg-3 offset-lg-2">
                 <span>{{item.name}}<br></span>
             </div>

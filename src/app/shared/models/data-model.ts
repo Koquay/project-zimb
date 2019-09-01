@@ -25,7 +25,7 @@ export class Order {
     card_id: string;
     created_on: Date;
     created_time: Date;
-    // public delivery:Delivery = new Delivery();
+    delivery_date: Date;
     public buyer:Customer = new Customer();
     public receiver:Customer = new Customer();
     public menuItems:MenuItem[] = [];

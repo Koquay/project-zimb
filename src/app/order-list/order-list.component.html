@@ -19,10 +19,10 @@
                 <span class="font-weight-bold col-title">Phone</span>
             </div>
             <div class="col-2">
-                <span class="font-weight-bold col-title">City</span>
+                <span class="font-weight-bold col-title">Order Date</span>
             </div>
             <div class="col-2">
-                <span class="font-weight-bold col-title">Country</span>
+                <span class="font-weight-bold col-title">Delivery Date</span>
             </div>
 
         </div>
@@ -42,7 +42,7 @@
                     {{order.receiver.phone | mask: '(000) 000-0000'}}<br>
                 </a>
             </div>
-            <div class="col-6 col-sm-4 col-lg-2">
+            <!-- <div class="col-6 col-sm-4 col-lg-2">
                 <span class="text-center">
                     {{order.receiver.city}}<br>
                 </span>
@@ -52,11 +52,22 @@
                 <span class="text-center">
                     {{order.receiver.country}}<br>
                 </span>
+            </div> -->
+
+            <div class="col-6 col-sm-4 col-lg-2">
+                <span class="text-center">
+                    {{order.created_on | date:'shortDate'}}<br>
+                </span>
+            </div>
+            <div class="col-6 col-sm-4 col-lg-2">
+                <span class="text-center">
+                    {{order.delivery_date | date:'shortDate'}}<br>
+                </span>
             </div>
         </div>
     </section>
 
-    <section id="completed-orders" class="offset-sm-1">
+    <!-- <section id="completed-orders" class="offset-sm-1">
         <div class="row text-center mb-4">
             <div class="col"><span class="heading">Fulfilled Orders<br></span></div>
         </div>
@@ -106,7 +117,7 @@
                 </span>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <section id="pending-orders" class="offset-sm-1 mt-5">
         <div class="row text-center mb-4">
@@ -150,10 +161,10 @@
                 <span class="font-weight-bold col-title">Phone</span>
             </div>
             <div class="col-2">
-                <span class="font-weight-bold col-title">City</span>
+                <span class="font-weight-bold col-title">Order Date</span>
             </div>
             <div class="col-2">
-                <span class="font-weight-bold col-title">Country</span>
+                <span class="font-weight-bold col-title">Delivery Date</span>
             </div>
 
         </div>
@@ -173,7 +184,7 @@
                     {{order.receiver.phone | mask: '(000) 000-0000'}}<br>
                 </a>
             </div>
-            <div class="col-6 col-sm-4 col-lg-2">
+            <!-- <div class="col-6 col-sm-4 col-lg-2">
                 <span class="text-center">
                     {{order.receiver.city}}<br>
                 </span>
@@ -182,6 +193,17 @@
             <div class="col-6  col-sm-4 col-lg-2">
                 <span class="text-center">
                     {{order.receiver.country}}<br>
+                </span>
+            </div> -->
+
+            <div class="col-6 col-sm-4 col-lg-2">
+                <span class="text-center">
+                    {{order.created_on | date:'shortDate'}}<br>
+                </span>
+            </div>
+            <div class="col-6 col-sm-4 col-lg-2">
+                <span class="text-center">
+                    {{order.delivery_date | date:'shortDate'}}<br>
                 </span>
             </div>
         </div>

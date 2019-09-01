@@ -13,6 +13,7 @@ export class FoodProductService {
   private menuUrl = '/api/menu/';
   private menu:Menu[];
   private sides;
+  private drinks;
   
   constructor(
     private httpClient: HttpClient,
@@ -60,6 +61,26 @@ export class FoodProductService {
     sideMenu = _.uniq(sideMenu.sort());
     this.sides = sideMenu
     return of(this.sides);
+  }
+
+  public getDrinks() {
+    if(this.drinks) {
+      return of(this.drinks);
+    }
+
+    let drinkMenu = [];
+    let drinks = this.menu.filter(menu => menu.type == 'drinks');
+    console.log('drinks', drinks)
+    console.log('menu', this.menu)
+
+    for(let drink of drinks) {
+      // let name = drink.name.substr(0, drink.name.indexOf(','));
+      drinkMenu.push(drink.name)
+    }
+
+    drinkMenu = _.uniq(drinkMenu.sort());
+    this.drinks = drinkMenu
+    return of(this.drinks);
   }
 }
 

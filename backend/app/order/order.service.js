@@ -7,7 +7,7 @@ exports.getCurrentOrder = async () => {
     try {
         // throw new Error();
         let date = moment.tz('America/Toronto').format('YYYY-MM-DD');
-        const order = await Order.find({ created_on: date })
+        const order = await Order.find({ status: 'Pending' })
         console.log('order', order)
         return order;
     } catch (error) {
@@ -26,7 +26,10 @@ exports.placeOrder = async (newOrder) => {
     try {
         // throw new Error();       
         newOrder.created_on = moment.tz('America/Toronto').format('YYYY-MM-DD');
+        newOrder.zim_created_on = moment.tz('Africa/Johannesburg').format('YYYY-MM-DD');
+        newOrder.zim_delivery_date = moment.tz(newOrder.delivery_date, 'Africa/Johannesburg');        
         newOrder.created_time = moment.tz('America/Toronto').format('YYYY-MM-DD hh:mm A');
+
         const order = new Order(newOrder);
         console.log('order', order)
         order.save();

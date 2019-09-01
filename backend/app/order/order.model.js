@@ -56,10 +56,15 @@ const OrderSchema = new Schema({
         type:String,
         default: "Pending"
     },
+    delivery_date: {
+        type:Date,
+    },
+    zim_delivery_date: {
+        type:Date,
+    },
     card_id: {
         type: String,
     },
-    // delivery: DeliverySchema,
     buyer: CustomerSchema,
     receiver: CustomerSchema,
     menuItems: [MenuItemSchema],
@@ -69,7 +74,13 @@ const OrderSchema = new Schema({
     },
     created_time: {
         type:Date,
-    }       
+    },
+    zim_created_on: {
+        type:Date,
+    }, 
+    zim_delivery_date: {
+        type:Date,
+    } 
 });
 
 mongoose.model('Order', OrderSchema);

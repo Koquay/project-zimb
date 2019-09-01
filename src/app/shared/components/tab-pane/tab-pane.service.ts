@@ -37,7 +37,8 @@ export class TabPaneService {
       {type: "burgers-pitas-wraps", label: "Burgers, Pitas, Wraps", images:["burger-banner.jpg"]},         
       {type: "flame-grilled-chicken", label: "Flame Grilled Chicken", images:["flamed-grilled-chicken.jpg"]},
       {type: "salads", label: "Salads", images:["salads.jpg"]},                 
-      {type: "sides", label: "Sides", images:["salads.jpg"]},                 
+      {type: "sides", label: "Sides", images:["salads.jpg"]},           
+      {type: "drinks", label: "Drinks", images:["salads.jpg"]},       
       
     ]
   }

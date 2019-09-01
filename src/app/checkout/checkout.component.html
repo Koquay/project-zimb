@@ -35,7 +35,7 @@
                             </div>
                             <div class="form-row d-flex align-items-start" *ngFor="let item of order.menuItems">
                                 <div class="col-12 col-md-6 d-flex justify-content-start align-items-center">
-                                    <span class="d-flex">{{item.name}}</span>
+                                    <span class="d-flex">{{item.name}}</span>                                    
                                 </div>
                                 <div class="col-9 col-md-3 d-flex flex-row justify-content-md-center quantity">
                                     <a (click)="decreaseQuantity(item)">
@@ -104,7 +104,9 @@
                                     <div class="form-row">
                                         <div class="col">
                                             <div class="form-row mt-2">
-                                                <div class="col-12 text-center"><h3>Buyer's Information</h3></div>
+                                                <div class="col-12 text-center">
+                                                    <h3>Buyer's Information</h3>
+                                                </div>
                                                 <div class="col-12"><span>Name:</span></div>
                                                 <div class="col col-md-6 col-lg-12">
                                                     <input class="form-control" type="text" required name="name" id="name" [(ngModel)]="order.buyer.name" #name="ngModel">
@@ -180,6 +182,20 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-row mt-2">
+                                                        <div class="col-12">
+                                                            <span>Delivery Date:</span>
+                                                        </div>
+                                                        <div class="col col-md-6 col-lg-12">
+                                                            <ng-container>
+                                                                <input class="form-control" required type="date" name="deliveryDate" id="deliveryDate" [(ngModel)]="order.delivery_date"
+                                                                    #deliveryDate="ngModel">
+                                                                <div *ngIf="deliveryDate.invalid && (deliveryDate.dirty || deliveryDate.touched)" class="error-color">
+                                                                    Delivery Date is required
+                                                                </div>
+                                                            </ng-container>
+                                                        </div>
+                                                    </div>
+                                                <div class="form-row mt-2">
                                                     <div class="col-12">
                                                         <span>Delivery Instructions; (If any):</span>
                                                     </div>
@@ -194,7 +210,9 @@
                                     <div class="form-row mt-3">
                                         <div class="col">
                                             <div class="form-row mt-2">
-                                                    <div class="col-12 text-center"><h3>Receiver's Information</h3></div>
+                                                <div class="col-12 text-center">
+                                                    <h3>Receiver's Information</h3>
+                                                </div>
                                                 <div class="col-12"><span>Name:</span></div>
                                                 <div class="col col-md-6 col-lg-12">
                                                     <input class="form-control" type="text" required name="name" id="name" [(ngModel)]="order.receiver.name" #name="ngModel">
