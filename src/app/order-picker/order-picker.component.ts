@@ -53,7 +53,8 @@ export class OrderPickerComponent implements OnInit {
 
   private setOrderStatus() {
     console.log('completed order', this.order);
-    this.orderPickerService.setOrderStatus(this.order._id, this.order.status).subscribe(() => {
+    // this.orderPickerService.setOrderStatus(this.order._id, this.order.status).subscribe(() => {
+      this.orderPickerService.setOrderStatus(this.order).subscribe(() => {
       this.router.navigate(['/order-list'])
     });
   }

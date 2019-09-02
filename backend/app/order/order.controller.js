@@ -27,9 +27,10 @@ exports.placeOrder = async(req, res) => {
 }
 
 exports.setOrderStatus = async(req, res) => {
-    console.log('order complete params', req.params);
+    // console.log('order complete params', req.params);
     try {
-        await OrderService.setOrderStatus(req.params.id, req.params.status);
+        // await OrderService.setOrderStatus(req.params.id, req.params.status);
+        await OrderService.setOrderStatus(req.body.order);
         res.status(201).json([])
     } catch(error) {
         return ErrorHandler.handleError('setOrderStatus ERROR', res, error);

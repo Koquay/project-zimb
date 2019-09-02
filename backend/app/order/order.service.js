@@ -7,6 +7,7 @@ const Email = require('../email/email.service');
 exports.getCurrentOrder = async () => {
     try {
         // throw new Error();
+        // await Order.updateMany({}, {$set: {'status': 'Pending'}})
         let date = moment.tz('America/Toronto').format('YYYY-MM-DD');
         const orders = await Order.find({ status: 'Pending' })
         // console.log('order', order)
@@ -100,17 +101,17 @@ const chargeCard = async (newOrder) => {
     }
 }
 
-exports.setOrderStatus = async (id, status) => {
-    console.log('statusOrder ', id, status);
+exports.setOrderStatus = async (order) => {
     try {
         // throw new Error();
-        await Order.updateOne({ _id: id }, { $set: { status: status } });
-        if(status == 'Delivered') {
-            Email.sendBuyerEmail();
+        await Order.updateOne({ _id: order._id }, { $set: { status: order.status } });
+        if (order.status == 'Delivered') {
+            Email.sendBuyerEmail(order);
         }
-        
+
         return;
     } catch (error) {
+        console.log('ERRORx', error)
         error.message = 'Problem updating order status. If problem persitss, please contact Keith.';
         error.status = '500';
         throw error;
