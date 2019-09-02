@@ -27,7 +27,7 @@
                         <span>{{order.buyer.phone | mask: '(000) 000-0000'}}</span>
                     </div>
                 </div>
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col">
                         <span class="mr-3 font-weight-bold">Address:</span>
                         <span>{{order.buyer.address}}</span>
@@ -48,7 +48,7 @@
                         </span>
                         <span>{{order.buyer.country}}</span>
                     </div>
-                </div>
+                </div> -->
 
                 <div class="row mb-4">
                     <div class="col">
@@ -100,13 +100,13 @@
                 <div class="row">
                     <div class="col">
                         <span class="mr-3 font-weight-bold"><strong>Delivery Date</strong>:</span>
-                        <span>{{order.delivery_date | date:'shortDate'}}<br></span>
+                        <span>{{order.delivery_date | date:'short'}}<br></span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
                         <span class="mr-3 font-weight-bold"><strong>Zim Delivery Date</strong>:</span>
-                        <span>{{order.zim_delivery_date | date:'shortDate'}}<br></span>
+                        <span>{{order.zim_delivery_date | date:'short'}}<br></span>
                     </div>
                 </div>
             </div>

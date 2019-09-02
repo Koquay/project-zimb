@@ -1,14 +1,14 @@
 $primary: #cbba83;
 $secondary: #ffecb3;
 $tertiary: #ffffe5;
-$deep-brown: #6a5636;
+$dark-brown: #6a5636;
 
 #header {
     .jumbotron {
         padding: 2rem !important;
         font-style: italic;        
         letter-spacing: 1rem;
-        background: $deep-brown;
+        background: $dark-brown;
         color: $tertiary;
         border-radius: 0; 
 
@@ -40,16 +40,16 @@ $deep-brown: #6a5636;
 
 #myAccountModal {
     h2 {
-        color: $deep-brown !important;
+        color: $dark-brown !important;
     }
 
     .btn {
-        background: $deep-brown !important;
+        background: $dark-brown !important;
         font-size: 1.2rem;
     }
 
     .close {
-        color: $deep-brown !important;
+        color: $dark-brown !important;
         font-size: 1.2rem !important;
     }
 }   

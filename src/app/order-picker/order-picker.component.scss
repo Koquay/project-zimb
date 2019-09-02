@@ -2,7 +2,7 @@ $red: #a30000;
 $primary: #cbba83;
 $secondary: #ffecb3;
 $tertiary: #ffffe5;
-$deep-brown: #6a5636;
+$dark-brown: #6a5636;
 
 #order-picker{
     background: $tertiary;
@@ -27,6 +27,6 @@ input[type=checkbox]
 } 
 
 .customer-info {
-    color: $deep-brown;
+    color: $dark-brown;
     font-weight: bold;
 }

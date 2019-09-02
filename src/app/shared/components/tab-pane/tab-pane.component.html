@@ -56,9 +56,11 @@
             </div>
         </ng-template>
 
-        <button #openSidesModal id="openSidesModal" class="btn btn-lg btn-outline-primary hidden" (click)="open(content)">Launch
-            demo modal
-        </button>
+        <ng-container class="hidden">
+            <a #openSidesModal id="openSidesModal" class="" (click)="open(content)">
+            </a>
+        </ng-container>
+
     </ng-container>
 
 
@@ -84,8 +86,9 @@
                 </div>
             </div>
         </ng-template>
+    </ng-container>
 
-        <button #openDrinksModal id="openDrinksModal" class="btn btn-lg btn-outline-primary hidden" (click)="open(drinkContent)">Launch
-            demo modal
-        </button>
+    <ng-container class="hidden">
+        <a #openDrinksModal id="openDrinksModal" class="" (click)="open(drinkContent)">
+        </a>
     </ng-container>

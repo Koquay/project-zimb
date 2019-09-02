@@ -35,7 +35,7 @@
                             </div>
                             <div class="form-row d-flex align-items-start" *ngFor="let item of order.menuItems">
                                 <div class="col-12 col-md-6 d-flex justify-content-start align-items-center">
-                                    <span class="d-flex">{{item.name}}</span>                                    
+                                    <span class="d-flex">{{item.name}}</span>
                                 </div>
                                 <div class="col-9 col-md-3 d-flex flex-row justify-content-md-center quantity">
                                     <a (click)="decreaseQuantity(item)">
@@ -109,7 +109,7 @@
                                                 </div>
                                                 <div class="col-12"><span>Name:</span></div>
                                                 <div class="col col-md-6 col-lg-12">
-                                                    <input class="form-control" type="text" required name="name" id="name" [(ngModel)]="order.buyer.name" #name="ngModel">
+                                                    <input class="form-control" type="text" required name="name" id="buyersName" [(ngModel)]="order.buyer.name" #name="ngModel">
                                                     <div *ngIf="name.invalid && (name.dirty || name.touched)" class="error-color">
                                                         <div *ngIf="name.errors.required">
                                                             Name is required
@@ -131,7 +131,7 @@
                                             <div class="form-row mt-2">
                                                 <div class="col col-md-6 col-lg-12">
                                                     <label>Email</label>
-                                                    <input class="form-control" type="text" required [(ngModel)]="order.buyer.email" #email="ngModel" name="email">
+                                                    <input class="form-control" type="text" [(ngModel)]="order.buyer.email" #email="ngModel" name="email">
                                                     <div *ngIf="email.invalid && (email.dirty || email.touched)" class="error-color">
                                                         <div *ngIf="email.errors.required">
                                                             Email is required
@@ -140,7 +140,7 @@
                                                 </div>
                                             </div>
                                             <ng-container id="delivery-address">
-                                                <div class="form-row mt-2">
+                                                <!-- <div class="form-row mt-2">
                                                     <div class="col-12">
                                                         <span>Address:</span>
                                                     </div>
@@ -182,19 +182,19 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-row mt-2">
-                                                        <div class="col-12">
-                                                            <span>Delivery Date:</span>
-                                                        </div>
-                                                        <div class="col col-md-6 col-lg-12">
-                                                            <ng-container>
-                                                                <input class="form-control" required type="date" name="deliveryDate" id="deliveryDate" [(ngModel)]="order.delivery_date"
-                                                                    #deliveryDate="ngModel">
-                                                                <div *ngIf="deliveryDate.invalid && (deliveryDate.dirty || deliveryDate.touched)" class="error-color">
-                                                                    Delivery Date is required
-                                                                </div>
-                                                            </ng-container>
-                                                        </div>
+                                                    <div class="col-12">
+                                                        <span>Delivery Date:</span>
                                                     </div>
+                                                    <div class="col col-md-6 col-lg-12">
+                                                        <ng-container>
+                                                            <input class="form-control" required type="date" name="deliveryDate" id="deliveryDate" [(ngModel)]="order.delivery_date"
+                                                                #deliveryDate="ngModel">
+                                                            <div *ngIf="deliveryDate.invalid && (deliveryDate.dirty || deliveryDate.touched)" class="error-color">
+                                                                Delivery Date is required
+                                                            </div>
+                                                        </ng-container>
+                                                    </div>
+                                                </div> -->
                                                 <div class="form-row mt-2">
                                                     <div class="col-12">
                                                         <span>Delivery Instructions; (If any):</span>
@@ -215,7 +215,7 @@
                                                 </div>
                                                 <div class="col-12"><span>Name:</span></div>
                                                 <div class="col col-md-6 col-lg-12">
-                                                    <input class="form-control" type="text" required name="name" id="name" [(ngModel)]="order.receiver.name" #name="ngModel">
+                                                    <input class="form-control" type="text" required name="name" id="receiversName" [(ngModel)]="order.receiver.name" #name="ngModel">
                                                     <div *ngIf="name.invalid && (name.dirty || name.touched)" class="error-color">
                                                         <div *ngIf="name.errors.required">
                                                             Name is required
@@ -252,7 +252,7 @@
                                                     </div>
                                                     <div class="col col-md-6 col-lg-12">
                                                         <ng-container>
-                                                            <input class="form-control" type="text" required name="address" id="address" [(ngModel)]="order.receiver.address" #address="ngModel">
+                                                            <input class="form-control" type="text" name="address" id="address" [(ngModel)]="order.receiver.address" #address="ngModel">
                                                             <div *ngIf="address.invalid && (address.dirty || address.touched)" class="error-color">
                                                                 Address is required
                                                             </div>
@@ -284,6 +284,50 @@
                                                             <div *ngIf="country.invalid && (country.dirty || country.touched)" class="error-color">
                                                                 Country is required
                                                             </div>
+                                                        </ng-container>
+                                                    </div>
+                                                </div>
+                                                <!-- <div class="form-row mt-2">
+                                                    <div class="col-12">
+                                                        <span>Delivery Date:</span>
+                                                    </div>
+                                                    <div class="col col-md-6 col-lg-12">
+                                                        <ng-container>
+                                                            <div class="form-group">
+                                                                <div class="input-group">
+                                                                    <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="order.delivery_date" ngbDatepicker #d="ngbDatepicker"
+                                                                        [minDate]="minDate">
+                                                                    <div class="input-group-append">
+                                                                        <button class="btn btn-outline-secondary calendar date-btn" (click)="d.toggle()" type="button">
+                                                                            <i class="fa fa-calendar"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </ng-container>
+                                                    </div>
+                                                </div> -->
+                                                <div class="form-row mt-2">
+                                                    <div class="col-12">
+                                                        <span>Delivery Date:</span>
+                                                    </div>
+                                                    <div class="col col-md-6 col-lg-12">
+                                                        <ng-container>
+                                                            <input class="form-control" type="date" name="deliveryDate" id="deliveryDate" [(ngModel)]="order.delivery_date"
+                                                                #deliveryDate="ngModel">
+                                                            <div *ngIf="deliveryDate.invalid && (deliveryDate.dirty || deliveryDate.touched)" class="error-color">
+                                                                Delivery Date is required
+                                                            </div>
+                                                        </ng-container>
+                                                    </div>
+                                                </div>
+                                                <div class="form-row mt-2">
+                                                    <div class="col-12">
+                                                        <span>Delivery Time:</span>
+                                                    </div>
+                                                    <div class="col col-md-6 col-lg-12">
+                                                        <ng-container>
+                                                            <ngb-timepicker [(ngModel)]="order.delivery_time" [meridian]="meridian" name="time" class="timepicker"></ngb-timepicker>
                                                         </ng-container>
                                                     </div>
                                                 </div>

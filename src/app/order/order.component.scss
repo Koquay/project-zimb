@@ -3,7 +3,7 @@ $red: #a30000;
 $primary: #cbba83;
 $secondary: #ffecb3;
 $tertiary: #ffffe5;
-$deep-brown: #6a5636;
+$dark-brown: #6a5636;
 
 #order {
     #totals {
@@ -25,7 +25,7 @@ $deep-brown: #6a5636;
     }
     
     i {
-        color: $deep-brown;
+        color: $dark-brown;
         font-size: 1.5rem;
 
         &:hover {
@@ -37,7 +37,7 @@ $deep-brown: #6a5636;
         color: $red;
 
         &:hover {
-            color: $deep-brown;
+            color: $dark-brown;
         }
     }
     

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { CheckoutRoutingModule } from './checkout-routing.module';
 import { CheckoutComponent } from './checkout.component';
@@ -17,7 +18,8 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
     CheckoutRoutingModule,
     NgxMaskModule.forRoot(options),
     SharedModule,
-    FormsModule
+    FormsModule,
+    NgbModule
   ]
 })
 export class CheckoutModule { }

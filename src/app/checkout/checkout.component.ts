@@ -15,6 +15,8 @@ export class CheckoutComponent implements OnInit, AfterViewInit {
   private deleteItem:MenuItem;
   private elements: Elements;
   private card: StripeElement;
+  private meridian = true;
+  private minDate:{year, month, day};
 
   private elementsOptions: ElementsOptions = {
     locale: 'en'
@@ -25,7 +27,13 @@ export class CheckoutComponent implements OnInit, AfterViewInit {
     private messageService:MessageService,
     private countryCitySelectorService:CountryCitySelectorService,
     private stripeService: StripeService,
-  ) { }
+  ) { 
+    const date = new Date();
+    this.minDate = {year:date.getFullYear(), month:date.getMonth()+1, day:date.getDate()}
+    // [minDate]="{year: 2019, month: 9, day: 2}
+    console.log('minDate', this.minDate)
+
+  }
 
   ngOnInit() {
     this.getOrder();
@@ -40,7 +48,7 @@ export class CheckoutComponent implements OnInit, AfterViewInit {
 
     this.stripeService.createToken(this.card, { name }).subscribe(result => {
       console.log('result', result)
-
+      
       if (result.token) {
         this.order.card_token = result.token.id;
         this.order.order_no = Math.floor((Math.random() * 1000000) + 1);

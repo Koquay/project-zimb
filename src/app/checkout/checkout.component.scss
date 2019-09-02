@@ -1,7 +1,7 @@
 $primary: #cbba83;
 $secondary: #ffecb3;
 $tertiary: #ffffe5;
-$deep-brown: #6a5636;
+$dark-brown: #6a5636;
 $red: #a30000; 
 
 #checkout {
@@ -40,7 +40,7 @@ $red: #a30000;
 
 
     i {
-        color: $deep-brown !important;
+        color: $dark-brown !important;
         font-size: 1.5rem;
     
         &:hover {
@@ -52,7 +52,7 @@ $red: #a30000;
         color: $red !important;
     
         &:hover {
-            color: $deep-brown !important;
+            color: $dark-brown !important;
         }
     }
 
@@ -61,7 +61,7 @@ $red: #a30000;
       }
 
       .place-order-btn {
-        background: $deep-brown;
+        background: $dark-brown;
         color: $tertiary;
         font-weight: bold;
         letter-spacing: .5rem;
@@ -115,4 +115,13 @@ $red: #a30000;
     .btn-delete {
         background: $red;
     }
+}
+
+.date-btn {
+    color: $secondary;
+    border: none;
+}
+
+.timepicker {
+    color: $dark-brown !important;
 }

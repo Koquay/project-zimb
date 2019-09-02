@@ -1,7 +1,7 @@
 $primary: #97b498;
 $secondary: #c8e6c9;
 $tertiary: #fbfffc;
-$deep-brown: #6a5636;
+$dark-brown: #6a5636;
 
 
 .row {
@@ -22,14 +22,14 @@ i {
 
 .alertSuccessClass {
     background-color: $tertiary;
-    color: $deep-brown;
+    color: $dark-brown;
 }
 
 .alertDangerClass,
 .alertInfoClass {
     background-color: #f3d4d4;
     // background-color: $tertiary;
-    color: $deep-brown;
+    color: $dark-brown;
 }
 
 .hidden {
@@ -42,6 +42,6 @@ i {
 
 .modal {
     button {
-        background: $deep-brown;
+        background: $dark-brown;
     }
 }

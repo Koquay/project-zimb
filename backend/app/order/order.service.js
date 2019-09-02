@@ -2,14 +2,15 @@ require('./order.model')
 const Order = require('mongoose').model('Order');
 const moment = require('moment-timezone');
 const stripe = require('stripe')('sk_test_ybjdse51Sh1sgPPanyxXQANL007sdrs1D3');
+const Email = require('../email/email.service');
 
 exports.getCurrentOrder = async () => {
     try {
         // throw new Error();
         let date = moment.tz('America/Toronto').format('YYYY-MM-DD');
-        const order = await Order.find({ status: 'Pending' })
-        console.log('order', order)
-        return order;
+        const orders = await Order.find({ status: 'Pending' })
+        // console.log('order', order)
+        return orders;
     } catch (error) {
         error.message = 'Problem getting pending orders.';
         error.status = '500';
@@ -25,10 +26,39 @@ exports.placeOrder = async (newOrder) => {
 
     try {
         // throw new Error();       
+
+        var a = moment.tz("2019-09-14 03:04", "America/Toronto").format('YYYY-MM-DD hh:mm A');;
+        var b = moment.tz("2019-09-14 03:04", "Africa/Johannesburg").format('YYYY-MM-DD hh:mm A');
+
+        console.log('toronto date', a)
+        console.log('zimb date', b)
+
+        let hour = newOrder.delivery_time.hour.toString();
+        let minute = newOrder.delivery_time.minute.toString();
+        console.log('hour + length', hour, hour.length)
+        console.log('minute + length', minute, minute.length)
+
+        if (hour.length == 1) {
+            hour = "0" + hour;
+        }
+
+        if (minute.length == 1) {
+            minute = "0" + minute;
+        }
+
+
+        let time = hour + ":" + minute;
+
+        console.log('adding minutes to date', newOrder.delivery_date + " " + time)
+        let delivery_date = newOrder.delivery_date + " " + time
+
+        newOrder.delivery_date = moment.tz(delivery_date, 'America/Toronto').format('YYYY-MM-DD hh:mm A');
+        console.log('newOrder.delivery_date', newOrder.delivery_date)
         newOrder.created_on = moment.tz('America/Toronto').format('YYYY-MM-DD');
         newOrder.zim_created_on = moment.tz('Africa/Johannesburg').format('YYYY-MM-DD');
-        newOrder.zim_delivery_date = moment.tz(newOrder.delivery_date, 'Africa/Johannesburg');        
+        newOrder.zim_delivery_date = moment.tz(newOrder.delivery_date, 'Africa/Johannesburg');
         newOrder.created_time = moment.tz('America/Toronto').format('YYYY-MM-DD hh:mm A');
+        console.log('newOrder', newOrder)
 
         const order = new Order(newOrder);
         console.log('order', order)
@@ -75,13 +105,18 @@ exports.setOrderStatus = async (id, status) => {
     try {
         // throw new Error();
         await Order.updateOne({ _id: id }, { $set: { status: status } });
+        if(status == 'Delivered') {
+            Email.sendBuyerEmail();
+        }
+        
         return;
     } catch (error) {
-        error.message = 'Problem updating order status. Please contact Keith.';
+        error.message = 'Problem updating order status. If problem persitss, please contact Keith.';
         error.status = '500';
         throw error;
     }
 }
+
 
 exports.searchOrder = async (searchCriteria) => {
     let searchParams = JSON.parse(searchCriteria);

@@ -26,10 +26,10 @@ export class Order {
     created_on: Date;
     created_time: Date;
     delivery_date: Date;
+    delivery_time: {hour, minute};
     public buyer:Customer = new Customer();
     public receiver:Customer = new Customer();
-    public menuItems:MenuItem[] = [];
-    
+    public menuItems:MenuItem[] = [];   
 }
 
 // export class Delivery {

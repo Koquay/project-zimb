@@ -5,7 +5,7 @@ $tertiary: #ffffe5;
 // $primary: #97b498;
 // $secondary: #c8e6c9;
 // $tertiary: #fbfffc;
-$deep-brown: #6a5636;
+$dark-brown: #6a5636;
 
 #main {
     font-size: 1rem;
@@ -17,7 +17,7 @@ $deep-brown: #6a5636;
         letter-spacing: .5rem;
 
         &:hover {
-            background: $deep-brown;
+            background: $dark-brown;
         }
     }
     
@@ -33,7 +33,7 @@ $deep-brown: #6a5636;
         
         a.active {
             background: $tertiary !important;
-            color: $deep-brown !important;
+            color: $dark-brown !important;
         }
     }
     

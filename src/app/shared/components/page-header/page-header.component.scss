@@ -1,10 +1,10 @@
 $primary: #cbba83;
 $secondary: #ffecb3;
 $tertiary: #ffffe5;
-$deep-brown: #6a5636;
+$dark-brown: #6a5636;
 
 .page-header-btn {
-    background: $deep-brown;
+    background: $dark-brown;
     color: $tertiary;
     font-weight: bold;
     letter-spacing: .5rem;
@@ -21,6 +21,6 @@ $deep-brown: #6a5636;
     letter-spacing: .2rem;
     font-style: italic;
     font-size: 3rem;
-    color: $deep-brown;
+    color: $dark-brown;
 }
 
