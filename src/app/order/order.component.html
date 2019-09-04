@@ -3,14 +3,14 @@
 <app-banner></app-banner>
 <app-breadcrumb></app-breadcrumb>
 
-<div class="container-fluid view-height" id="order">    
-    <div class="container mt-4">        
+<div class="container-fluid view-height" id="order">
+    <div class="container mt-4">
         <app-page-header></app-page-header>
         <app-country-city-selected></app-country-city-selected>
 
         <section id="items" class="py-4 px-2 mt-2">
             <div class="row d-none d-md-flex pt-3 justify-content-center">
-                <div class="col col-md-4">
+                <div class="col col-md-5">
                     <h5>Item</h5>
                 </div>
                 <div class="col-2 text-right">
@@ -29,14 +29,18 @@
                 </div>
             </div>
             <div class="row justify-content-center" *ngFor="let item of order.menuItems">
-                <div class="col col-md-4  text-left">
+
+                <div class="col-10 col-md-2 col-lg-2 text-center text-md-left" *ngIf="item.image">
+                    <img class="img-fluid" src="assets/img/{{item.image}}">
+                </div>
+                <div class="col-10 col-md-3  text-left mt-1 mt-md-0">
                     <span class="text-center">{{item.name}}
                     </span>
                 </div>
-                <div class="col-6 text-right col-md-2">
+                <div class="col-10 text-left text-md-right col-md-2 mt-1 mt-md-0">
                     <span>{{item.price | currency:'USD':'symbol-narrow'}}</span>
                 </div>
-                <div class="col-6 text-md-center col-md-3">
+                <div class="col-5 text-md-center col-md-3 mt-1 mt-md-0">
                     <a (click)="decreaseQuantity(item)">
                         <i class="fa fa-minus-square quantity-change"></i>
                     </a>
@@ -49,7 +53,7 @@
                     </a>
                 </div>
 
-                <div class="col-6 text-right col-md-2">
+                <div class="col-5 text-right col-md-2 mt-1 mt-md-0">
                     <span>{{item.price * item.quantity | currency:'USD':'symbol-narrow'}}</span>
                 </div>
                 <div class="col-12 text-center">
@@ -57,10 +61,10 @@
                 </div>
             </div>
         </section>
-        <section id="totals" class="justify-content-center px-2">
+        <section id="totals" class="justify-content-center justify-content-md-right px-2 px-md-0">
             <div class="row">
                 <div class="col col-md-2 text-right offset-md-63">
-                    <span>Subtotal:</span>
+                    <span class="">Subtotal:</span>
                 </div>
                 <div class="col col-md-2 text-right">
                     <span class="font-weight-bold">{{order.subtotal | currency:'USD':'symbol-narrow'}}</span>
@@ -72,7 +76,9 @@
                 </div>
             </div>
             <div class="row pb-2" id="total-row">
-                <div class="col col-md-2 text-right offset-md-63"><span>Total:</span></div>
+                <div class="col col-md-2 text-right offset-md-63">
+                    <span class="">Total:</span>
+                </div>
                 <div class="col col-md-2 text-right"><span class="font-weight-bold">
                         {{order.total | currency:'USD':'symbol-narrow'}}
                     </span>

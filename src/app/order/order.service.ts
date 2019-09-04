@@ -43,6 +43,7 @@ export class OrderService {
     menuItem.quantity = item.quantity;
     menuItem.type = item.type;
     menuItem._id = item._id;
+    menuItem.image = item.image;
 
     console.log('menu item', menuItem);
     

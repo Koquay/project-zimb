@@ -4,6 +4,7 @@ export class Menu {
     public price:number;
     public quantity:number = 1;
     public initial_menu;
+    public image;
     public type:string;
 }
 
@@ -13,6 +14,7 @@ export class MenuItem {
     public price:number;
     public quantity:number;
     public type:string;
+    public image;
 }
 
 export class Order {    
