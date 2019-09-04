@@ -52,9 +52,15 @@ export class FoodProductService {
 
     let sideMenu = [];
     let sides = this.menu.filter(menu => menu.type == 'sides');
+    let name;
 
-    for(let side of sides) {
-      let name = side.name.substr(0, side.name.indexOf(','));
+    for(let side of sides) {     
+      name = side.name.substr(0, side.name.indexOf(','));
+
+      if(!name) {
+        name = side.name;
+      }
+      
       sideMenu.push(name)
     }
 
@@ -70,16 +76,12 @@ export class FoodProductService {
 
     let drinkMenu = [];
     let drinks = this.menu.filter(menu => menu.type == 'drinks');
-    console.log('drinks', drinks)
-    console.log('menu', this.menu)
 
     for(let drink of drinks) {
-      // let name = drink.name.substr(0, drink.name.indexOf(','));
       drinkMenu.push(drink.name)
     }
 
-    drinkMenu = _.uniq(drinkMenu.sort());
-    this.drinks = drinkMenu
+    this.drinks = drinkMenu.sort();
     return of(this.drinks);
   }
 }

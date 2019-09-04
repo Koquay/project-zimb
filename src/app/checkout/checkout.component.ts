@@ -30,7 +30,6 @@ export class CheckoutComponent implements OnInit, AfterViewInit {
   ) { 
     const date = new Date();
     this.minDate = {year:date.getFullYear(), month:date.getMonth()+1, day:date.getDate()}
-    // [minDate]="{year: 2019, month: 9, day: 2}
     console.log('minDate', this.minDate)
 
   }

@@ -16,6 +16,9 @@ const MenuSchema = new Schema({
     type: {
         type: String,
     },
+    initial_menu: {
+        type: Boolean,
+    },
     list_price: {
         type: Number,
         required: true

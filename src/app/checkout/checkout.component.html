@@ -287,34 +287,13 @@
                                                         </ng-container>
                                                     </div>
                                                 </div>
-                                                <!-- <div class="form-row mt-2">
-                                                    <div class="col-12">
-                                                        <span>Delivery Date:</span>
-                                                    </div>
-                                                    <div class="col col-md-6 col-lg-12">
-                                                        <ng-container>
-                                                            <div class="form-group">
-                                                                <div class="input-group">
-                                                                    <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="order.delivery_date" ngbDatepicker #d="ngbDatepicker"
-                                                                        [minDate]="minDate">
-                                                                    <div class="input-group-append">
-                                                                        <button class="btn btn-outline-secondary calendar date-btn" (click)="d.toggle()" type="button">
-                                                                            <i class="fa fa-calendar"></i>
-                                                                        </button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </ng-container>
-                                                    </div>
-                                                </div> -->
                                                 <div class="form-row mt-2">
                                                     <div class="col-12">
                                                         <span>Delivery Date:</span>
                                                     </div>
                                                     <div class="col col-md-6 col-lg-12">
                                                         <ng-container>
-                                                            <input class="form-control" type="date" name="deliveryDate" id="deliveryDate" [(ngModel)]="order.delivery_date"
-                                                                #deliveryDate="ngModel">
+                                                            <input class="form-control" type="date" name="deliveryDate" id="deliveryDate" [(ngModel)]="order.delivery_date" #deliveryDate="ngModel">
                                                             <div *ngIf="deliveryDate.invalid && (deliveryDate.dirty || deliveryDate.touched)" class="error-color">
                                                                 Delivery Date is required
                                                             </div>
@@ -323,11 +302,12 @@
                                                 </div>
                                                 <div class="form-row mt-2">
                                                     <div class="col-12">
-                                                        <span>Delivery Time:</span>
+                                                        <span>Delivery - </span>
+                                                        <span>{{order.receiver.country}} Time</span>
                                                     </div>
                                                     <div class="col col-md-6 col-lg-12">
                                                         <ng-container>
-                                                            <ngb-timepicker [(ngModel)]="order.delivery_time" [meridian]="meridian" name="time" class="timepicker"></ngb-timepicker>
+                                                            <ngb-timepicker [(ngModel)]="order.delivery_time" name="time" class="timepicker d-inline-block"></ngb-timepicker>
                                                         </ng-container>
                                                     </div>
                                                 </div>

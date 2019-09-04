@@ -16,7 +16,7 @@
         <div class="tab-content mt-2">
             <ng-container *ngFor="let item of menuData">
                 <div class="tab-pane" role="tabpanel" id={{item.type}} [ngClass]="{ 'active':activeTab===item.type}">
-                    <app-tab-pane [currentMenu]="currentMenu" [activeTab]="activeTab" *ngIf="!isLoading"></app-tab-pane>
+                    <app-tab-pane [currentMenu]="currentMenu" [business]="business"  [activeTab]="activeTab" *ngIf="!isLoading"></app-tab-pane>
                 </div>
             </ng-container>
         </div>

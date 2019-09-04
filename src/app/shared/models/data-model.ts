@@ -3,6 +3,7 @@ export class Menu {
     public name:string;
     public price:number;
     public quantity:number = 1;
+    public initial_menu;
     public type:string;
 }
 

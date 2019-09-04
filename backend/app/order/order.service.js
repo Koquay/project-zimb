@@ -2,7 +2,7 @@ require('./order.model')
 const Order = require('mongoose').model('Order');
 const moment = require('moment-timezone');
 const stripe = require('stripe')('sk_test_ybjdse51Sh1sgPPanyxXQANL007sdrs1D3');
-const Email = require('../email/email.service');
+const email = require('../email/email.service');
 
 exports.getCurrentOrder = async () => {
     try {
@@ -28,16 +28,8 @@ exports.placeOrder = async (newOrder) => {
     try {
         // throw new Error();       
 
-        var a = moment.tz("2019-09-14 03:04", "America/Toronto").format('YYYY-MM-DD hh:mm A');;
-        var b = moment.tz("2019-09-14 03:04", "Africa/Johannesburg").format('YYYY-MM-DD hh:mm A');
-
-        console.log('toronto date', a)
-        console.log('zimb date', b)
-
         let hour = newOrder.delivery_time.hour.toString();
         let minute = newOrder.delivery_time.minute.toString();
-        console.log('hour + length', hour, hour.length)
-        console.log('minute + length', minute, minute.length)
 
         if (hour.length == 1) {
             hour = "0" + hour;
@@ -47,19 +39,19 @@ exports.placeOrder = async (newOrder) => {
             minute = "0" + minute;
         }
 
-
         let time = hour + ":" + minute;
 
-        console.log('adding minutes to date', newOrder.delivery_date + " " + time)
         let delivery_date = newOrder.delivery_date + " " + time
+        console.log('newOrder.delivery_date after construction', delivery_date)
+       
+        newOrder.delivery_date = moment(delivery_date).tz('America/Toronto').format('YYYY-MM-DD hh:mm A');
+        newOrder.zim_delivery_date = moment(delivery_date).tz('Africa/Johannesburg').format('YYYY-MM-DD hh:mm A');
+        console.log('newOrder.delivery_date zimb', newOrder.zim_delivery_date)
+        console.log('newOrder.delivery_date toro', newOrder.delivery_date)
 
-        newOrder.delivery_date = moment.tz(delivery_date, 'America/Toronto').format('YYYY-MM-DD hh:mm A');
-        console.log('newOrder.delivery_date', newOrder.delivery_date)
         newOrder.created_on = moment.tz('America/Toronto').format('YYYY-MM-DD');
-        newOrder.zim_created_on = moment.tz('Africa/Johannesburg').format('YYYY-MM-DD');
-        newOrder.zim_delivery_date = moment.tz(newOrder.delivery_date, 'Africa/Johannesburg');
+        newOrder.zim_created_on = moment.tz('Africa/Johannesburg').format('YYYY-MM-DD');        
         newOrder.created_time = moment.tz('America/Toronto').format('YYYY-MM-DD hh:mm A');
-        console.log('newOrder', newOrder)
 
         const order = new Order(newOrder);
         console.log('order', order)
@@ -75,7 +67,6 @@ exports.placeOrder = async (newOrder) => {
 
 const chargeCard = async (newOrder) => {
     try {
-        console.log("############### card_token", newOrder.card_token)
         const result = await stripe.charges.create({
             amount: Math.round(newOrder.total) * 100,
             currency: 'cad',
@@ -84,7 +75,7 @@ const chargeCard = async (newOrder) => {
             receipt_email: newOrder.buyer.email,
         });
 
-        console.log('result', result);
+        // console.log('result', result);
 
         if (!result.paid) {
             let creditCardError = new Error();
@@ -106,7 +97,7 @@ exports.setOrderStatus = async (order) => {
         // throw new Error();
         await Order.updateOne({ _id: order._id }, { $set: { status: order.status } });
         if (order.status == 'Delivered') {
-            Email.sendBuyerEmail(order);
+            email.sendBuyerEmail(order);
         }
 
         return;
@@ -192,5 +183,5 @@ const buildFirstNameMatch = (firstName) => {
 }
 
 function buildSortMatch() {
-    return { $sort: { created_on: -1 } };
+    return { $sort: { created_time: -1 } };
 }

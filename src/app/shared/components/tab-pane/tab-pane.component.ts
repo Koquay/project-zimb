@@ -14,6 +14,7 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 export class TabPaneComponent implements OnInit {
   @Input() currentMenu: Menu[];
   @Input() private activeTab;
+  @Input() private business;
   private quantities;
   private menuData;
   private quantity = 1;
@@ -37,7 +38,7 @@ export class TabPaneComponent implements OnInit {
   }
 
   private getMenuStaticData() {
-    this.tabPaneService.getMenuStaticData().subscribe(data => {
+    this.tabPaneService.getMenuStaticData(this.business).subscribe(data => {
       this.quantities = data[0];
       this.menuData = data[1];
       console.log('static data', data)
