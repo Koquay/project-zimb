@@ -17,46 +17,60 @@
             <div class="col">
                 <form #deliveryForm="ngForm">
                     <div class="form-row">
-                        <div class="col-12 col-lg-7">
-                            <div class="form-row d-none d-md-block">
-                                <div class="col">
-                                    <div class="form-row font-weight-bold">
-                                        <div class="col-12 col-md-6 d-flex justify-content-start align-items-center"><span
-                                                class="d-flex">Item</span></div>
-                                        <div class="col-9 col-md-3 d-flex align-items-center justify-content-md-center"><span>Quantity</span></div>
-                                        <div class="col-2 d-flex justify-content-end align-items-center">
-                                            <span>Price</span>
-                                        </div>
-                                        <div class="col-12">
-                                            <hr>
-                                        </div>
+                        <div class="col-12">
+                            <section id="items" class="py-4 px-2 mt-2">
+                                <div class="row d-none d-md-flex pt-3 justify-content-center">
+                                    <div class="col col-md-5">
+                                        <h5>Item</h5>
+                                    </div>
+                                    <div class="col-2 text-right">
+                                        <h5>Price</h5>
+                                    </div>
+                                    <div class="col-3 text-center">
+                                        <h5>Quantity</h5>
+                                    </div>
+                                    <div class="col-2 text-right">
+                                        <h5>Total</h5>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="form-row d-flex align-items-start" *ngFor="let item of order.menuItems">
-                                <div class="col-12 col-md-6 d-flex justify-content-start align-items-center">
-                                    <span class="d-flex">{{item.name}}</span>
+                                <div class="row d-none d-md-flex">
+                                    <div class="col-12 text-center">
+                                        <hr class="mt-0">
+                                    </div>
                                 </div>
-                                <div class="col-9 col-md-3 d-flex flex-row justify-content-md-center quantity">
-                                    <a (click)="decreaseQuantity(item)">
-                                        <i class="fa fa-minus-square quantity-change"></i>
-                                    </a>
-                                    <span class="mx-2">{{item.quantity}}</span>
-                                    <a (click)="increaseQuantity(item)">
-                                        <i class="fa fa-plus-square mr-2 quantity-change"></i>
-                                    </a>
-                                    <a (click)="setDeleteItem(item)" data-toggle="modal" data-target="#deleteItemModal">
-                                        <i class="fa fa-trash-o trash"></i>
-                                    </a>
-                                </div>
-                                <div class="col-2 d-flex justify-content-end align-items-center price">
-                                    <span>{{item.price * item.quantity | currency:'USD':'symbol-narrow'}}</span>
-                                </div>
-                                <div class="col-12">
-                                    <hr />
-                                </div>
-                            </div>
+                                <div class="row justify-content-center" *ngFor="let item of order.menuItems">
 
+                                    <div class="col-10 col-md-2 col-lg-2 text-center text-md-left" *ngIf="item.image">
+                                        <img class="img-fluid" src="assets/img/{{item.image}}">
+                                    </div>
+                                    <div class="col-10 col-md-3  text-left mt-1 mt-md-0">
+                                        <span class="text-center">{{item.name}}
+                                        </span>
+                                    </div>
+                                    <div class="col-10 text-left text-md-right col-md-2 mt-1 mt-md-0">
+                                        <span>{{item.price | currency:'USD':'symbol-narrow'}}</span>
+                                    </div>
+                                    <div class="col-5 text-md-center col-md-3 mt-1 mt-md-0">
+                                        <a (click)="decreaseQuantity(item)">
+                                            <i class="fa fa-minus-square quantity-change"></i>
+                                        </a>
+                                        <span class="mx-2">{{item.quantity}}</span>
+                                        <a (click)="increaseQuantity(item)">
+                                            <i class="fa fa-plus-square mr-2 quantity-change"></i>
+                                        </a>
+                                        <a (click)="setDeleteItem(item)" data-toggle="modal" data-target="#deleteItemModal">
+                                            <i class="fa fa-trash-o trash"></i>
+                                        </a>
+                                    </div>
+
+                                    <div class="col-5 text-right col-md-2 mt-1 mt-md-0">
+                                        <span>{{item.price * item.quantity | currency:'USD':'symbol-narrow'}}</span>
+                                    </div>
+                                    <div class="col-12 text-center">
+                                        <hr class="">
+                                    </div>
+                                </div>
+                            </section>
                             <section id="totals" class="justify-content-center px-4 px-md-2">
                                 <div class="row">
                                     <div class="col col-md-2 text-right offset-md-60">
@@ -91,16 +105,18 @@
                                         <img class="img-fluid" src="assets/img/payment-2.png">
                                     </div>
                                 </div>
-                                <div class="form-row">
-                                    <label for="card-element">Enter Credit Card Information Below:</label>
-                                    <div id="card-element" class="col-12 mb-4">
+                                <div class="form-row px-lg-5 mx-lg-5">
+                                    <div class="px-lg-5">
+                                        <label for="card-element">Enter Credit Card Information Below:</label>
+                                    </div>
+                                    <div id="card-element" class="col-12 mb-4 px-lg-5">
                                     </div>
                                 </div>
                             </section>
                         </div>
-                        <div class="col-12 col-lg-4 ml-lg-5">
+                        <div class="col-12">
                             <div class="form-row">
-                                <div class="col delivery p-4">
+                                <div class="col delivery p-4 px-md-5">
                                     <div class="form-row">
                                         <div class="col">
                                             <div class="form-row mt-2">
@@ -108,7 +124,7 @@
                                                     <h3>Buyer's Information</h3>
                                                 </div>
                                                 <div class="col-12"><span>Name:</span></div>
-                                                <div class="col col-md-6 col-lg-12">
+                                                <div class="col-12">
                                                     <input class="form-control" type="text" required name="name" id="buyersName" [(ngModel)]="order.buyer.name" #name="ngModel">
                                                     <div *ngIf="name.invalid && (name.dirty || name.touched)" class="error-color">
                                                         <div *ngIf="name.errors.required">
@@ -118,7 +134,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-row mt-2">
-                                                <div class="col col-md-6 col-lg-12">
+                                                <div class="col-12">
                                                     <label>Phone</label>
                                                     <input class="form-control" type="text" required [(ngModel)]="order.buyer.phone" #phone="ngModel" name="phone" mask="(000) 000 0000">
                                                     <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="error-color">
@@ -129,7 +145,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-row mt-2">
-                                                <div class="col col-md-6 col-lg-12">
+                                                <div class="col-12">
                                                     <label>Email</label>
                                                     <input class="form-control" type="text" [(ngModel)]="order.buyer.email" #email="ngModel" name="email">
                                                     <div *ngIf="email.invalid && (email.dirty || email.touched)" class="error-color">
@@ -144,7 +160,7 @@
                                                     <div class="col-12">
                                                         <span>Address:</span>
                                                     </div>
-                                                    <div class="col col-md-6 col-lg-12">
+                                                    <div class="col-12">
                                                         <ng-container>
                                                             <input class="form-control" type="text" required name="address" id="address" [(ngModel)]="order.buyer.address" #address="ngModel">
                                                             <div *ngIf="address.invalid && (address.dirty || address.touched)" class="error-color">
@@ -157,7 +173,7 @@
                                                     <div class="col-12">
                                                         <span>City:</span>
                                                     </div>
-                                                    <div class="col col-md-6 col-lg-12">
+                                                    <div class="col-12">
                                                         <ng-container>
                                                             <input class="form-control cityCountry" required type="text" name="buyerCity" id="buyerCity" [(ngModel)]="order.buyer.city"
                                                                 #buyerCity="ngModel">
@@ -171,7 +187,7 @@
                                                     <div class="col-12">
                                                         <span>Country:</span>
                                                     </div>
-                                                    <div class="col col-md-6 col-lg-12">
+                                                    <div class="col-12">
                                                         <ng-container>
                                                             <input class="form-control cityCountry" required type="text" name="buyerCountry" id="buyerCountry" [(ngModel)]="order.buyer.country"
                                                                 #buyerCountry="ngModel">
@@ -185,7 +201,7 @@
                                                     <div class="col-12">
                                                         <span>Delivery Date:</span>
                                                     </div>
-                                                    <div class="col col-md-6 col-lg-12">
+                                                    <div class="col-12">
                                                         <ng-container>
                                                             <input class="form-control" required type="date" name="deliveryDate" id="deliveryDate" [(ngModel)]="order.delivery_date"
                                                                 #deliveryDate="ngModel">
@@ -199,7 +215,7 @@
                                                     <div class="col-12">
                                                         <span>Delivery Instructions; (If any):</span>
                                                     </div>
-                                                    <div class="col col-md-6 col-lg-12">
+                                                    <div class="col-12">
                                                         <textarea class="form-control" name="instruction" id="instruction" [(ngModel)]="order.buyer.instruction">
                                                         </textarea>
                                                     </div>
@@ -214,7 +230,7 @@
                                                     <h3>Receiver's Information</h3>
                                                 </div>
                                                 <div class="col-12"><span>Name:</span></div>
-                                                <div class="col col-md-6 col-lg-12">
+                                                <div class="col-12">
                                                     <input class="form-control" type="text" required name="name" id="receiversName" [(ngModel)]="order.receiver.name" #name="ngModel">
                                                     <div *ngIf="name.invalid && (name.dirty || name.touched)" class="error-color">
                                                         <div *ngIf="name.errors.required">
@@ -224,7 +240,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-row mt-2">
-                                                <div class="col col-md-6 col-lg-12">
+                                                <div class="col-12">
                                                     <label>Phone</label>
                                                     <input class="form-control" type="text" [(ngModel)]="order.receiver.phone" #phone="ngModel" name="phone" mask="(000) 000 0000">
                                                     <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="error-color">
@@ -235,7 +251,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-row mt-2">
-                                                <div class="col col-md-6 col-lg-12">
+                                                <div class="col-12">
                                                     <label>Email</label>
                                                     <input class="form-control" type="text" [(ngModel)]="order.receiver.email" #email="ngModel" name="email">
                                                     <div *ngIf="email.invalid && (email.dirty || email.touched)" class="error-color">
@@ -250,7 +266,7 @@
                                                     <div class="col-12">
                                                         <span>Address:</span>
                                                     </div>
-                                                    <div class="col col-md-6 col-lg-12">
+                                                    <div class="col-12">
                                                         <ng-container>
                                                             <input class="form-control" type="text" name="address" id="address" [(ngModel)]="order.receiver.address" #address="ngModel">
                                                             <div *ngIf="address.invalid && (address.dirty || address.touched)" class="error-color">
@@ -263,7 +279,7 @@
                                                     <div class="col-12">
                                                         <span>City:</span>
                                                     </div>
-                                                    <div class="col col-md-6 col-lg-12">
+                                                    <div class="col-12">
                                                         <ng-container>
                                                             <input class="form-control cityCountry" type="text" required name="city" id="city" readonly [(ngModel)]="order.receiver.city"
                                                                 #city="ngModel">
@@ -277,7 +293,7 @@
                                                     <div class="col-12">
                                                         <span>Country:</span>
                                                     </div>
-                                                    <div class="col col-md-6 col-lg-12">
+                                                    <div class="col-12">
                                                         <ng-container>
                                                             <input class="form-control cityCountry" type="text" required name="country" id="country" readonly [(ngModel)]="order.receiver.country"
                                                                 #country="ngModel">
@@ -291,7 +307,7 @@
                                                     <div class="col-12">
                                                         <span>Delivery Date:</span>
                                                     </div>
-                                                    <div class="col col-md-6 col-lg-12">
+                                                    <div class="col-12">
                                                         <ng-container>
                                                             <input class="form-control" type="date" name="deliveryDate" id="deliveryDate" [(ngModel)]="order.delivery_date" #deliveryDate="ngModel">
                                                             <div *ngIf="deliveryDate.invalid && (deliveryDate.dirty || deliveryDate.touched)" class="error-color">
@@ -305,7 +321,7 @@
                                                         <span>Delivery - </span>
                                                         <span>{{order.receiver.country}} Time</span>
                                                     </div>
-                                                    <div class="col col-md-6 col-lg-12">
+                                                    <div class="col-12">
                                                         <ng-container>
                                                             <ngb-timepicker [(ngModel)]="order.delivery_time" name="time" class="timepicker d-inline-block"></ngb-timepicker>
                                                         </ng-container>

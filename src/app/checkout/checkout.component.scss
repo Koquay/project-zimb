@@ -31,6 +31,16 @@ $red: #a30000;
         #delivery-address {
             transition: 3s;
         }
+
+        @media(min-width: 768px) {
+            margin-left: 5rem;
+            margin-right: 5rem;    
+        }
+
+        @media(min-width: 991px) {
+            margin-left: 10rem;
+            margin-right: 10rem;    
+        }
     }
     
     #order-title {
@@ -124,4 +134,8 @@ $red: #a30000;
 
 .timepicker {
     color: $dark-brown !important;
+}
+
+.px-lg-10 {
+
 }
